@@ -8,7 +8,10 @@
 SRC_CLASS	=	
 
 SRC				=		$(SRC_CLASS)	\
-							./src/main.cpp
+							./src/main.cpp \
+							./src/Parser.cpp \
+							./src/Circuit.cpp \
+							./src/Component.cpp
 
 OBJ				=		$(SRC:.cpp=.o)
 

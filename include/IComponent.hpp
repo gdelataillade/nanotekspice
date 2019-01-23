@@ -9,19 +9,27 @@
 #define ICOMPONENT_HPP_
 
 #include <iostream>
+#include <string>
+#include <vector>
+#include <map>
 
 namespace nts {
-enum Tristate { UNDEFINED = (-true), TRUE = true, FALSE = false };
-class IComponent {
-   public:
-    virtual ~IComponent() = default;
+    enum Tristate {
+        UNDEFINED = (-true),
+        TRUE = true,
+        FALSE = false
+    };
+    class IComponent
+    {
+        public:
+            virtual ~IComponent() = default;
 
-   public:
-    virtual nts ::Tristate compute(std::size_t pin = 1) = 0;
-    virtual void setLink(std::size_t pin, nts ::IComponent &other,
-                         std::size_t otherPin) = 0;
-    virtual void dump() const = 0;
-};
+        public:
+            virtual nts::Tristate compute(std::size_t pin = 1) = 0;
+            virtual void setLink(std::size_t pin, nts::IComponent &other,
+                                std::size_t otherPin) = 0;
+            virtual void dump() const = 0;
+    };
 }  // namespace nts
 
 #endif /* !ICOMPONENT_HPP_ */
