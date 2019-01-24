@@ -12,7 +12,7 @@ int main(int argc, char const *argv[]) {
         std::cerr << "Don't forget the filepath!" << std::endl;
         return 0;  // TROW EXCEPTION !
     }
-    Circuit *c;
+    Circuit *c = new Circuit();
     std::string path(argv[1]);
     Parser p(path, c);
     p.fillCircuit();
