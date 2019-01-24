@@ -17,6 +17,7 @@ void Parser::fillCircuit()
     int level = 0;
     int it = 0;
     std::string arr[3];
+    std::string arr2[3];
     int pos;
 
     file.open(this->_path);
@@ -40,17 +41,18 @@ void Parser::fillCircuit()
                 }
                 it = 0;
                 if (level == 1) { // chipsets
-                    std::cout << arr[0] << "->" << arr[1] << std::endl;
-                    // this->_circuit->addComponent();
+                    this->_circuit->addComponent(arr[1], arr[0]);
                 }
                 else if (level == 2) { // links
                     pos = arr[0].find(":");
-                    std::cout << arr[0].substr(0, pos) << "->";
-                    std::cout << arr[0].substr(pos + 1) << " ";
+                    // std::cout << arr[0].substr(0, pos) << "->";
+                    // std::cout << arr[0].substr(pos + 1) << " ";
+                    arr2[0] = arr[0].substr(0, pos);
+                    arr2[1] = arr[0].substr(pos + 1);
                     pos = arr[1].find(":");
-                    std::cout << arr[1].substr(0, pos) << "->";
-                    std::cout << arr[1].substr(pos + 1) << std::endl;
-                    // this->_circuit->setLink();
+                    // std::cout << arr[1].substr(0, pos) << "->";
+                    // std::cout << arr[1].substr(pos + 1) << std::endl;
+                    this->_circuit->addLink(arr2[0], (size_t)std::stoi(arr2[1]), arr[1].substr(0, pos), (size_t)std::stoi(arr[1].substr(pos + 1)));
                 }
             }
         }
