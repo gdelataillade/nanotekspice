@@ -17,7 +17,7 @@
 class Parser
 {
 	public:
-		Parser(std::string path, Circuit circuit);
+		Parser(std::string path, Circuit *circuit);
 		virtual ~Parser() = default;
                 void fillCircuit();
 	private:

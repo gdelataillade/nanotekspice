@@ -7,8 +7,8 @@
 
 #include "Parser.hpp"
 
-Parser::Parser(std::string path, Circuit circuit)
-: _path(path), _circuit(&circuit){}
+Parser::Parser(std::string path, Circuit *circuit)
+: _path(path), _circuit(circuit){}
 
 void Parser::fillCircuit()
 {

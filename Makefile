@@ -7,38 +7,38 @@
 
 SRC_CLASS	=	
 
-SRC				=		$(SRC_CLASS)	\
-							./src/main.cpp \
-							./src/Parser.cpp \
-							./src/Circuit.cpp \
-							./src/Component.cpp
+SRC		=	$(SRC_CLASS)	\
+			./src/main.cpp \
+                        ./src/Parser.cpp \
+                        ./src/Circuit.cpp \
+                        ./src/Component.cpp
 
-OBJ				=		$(SRC:.cpp=.o)
+OBJ		=	$(SRC:.cpp=.o)
 
-NAME			=		nanotekspice
+NAME		=	nanotekspice
 
-CC				=		g++
+CC		=	g++
 
-INCLUDE		=		-I./include/
+INCLUDE		=	-I./include/
 
-CPPFLAGS	=		$(INCLUDE) -std=c++17 -Wall -Wextra -Werror
+CPPFLAGS	=	$(INCLUDE) -std=c++17 -Wall -Wextra
 
-$(NAME)		:		$(OBJ)
-							$(CC) -o $(NAME) $(OBJ)
-							@echo "COMPILATION: OK"
+$(NAME)		:	$(OBJ)
+			$(CC) -o $(NAME) $(OBJ)
+			@echo "COMPILATION: OK"
 
 .SILENT		:
 
-all				:		$(NAME)
+all		:	$(NAME)
 
-clean			:
-							@rm -f $(OBJ)
-							@echo "CLEAN: OK"
+clean		:
+			@rm -f $(OBJ)
+			@echo "CLEAN: OK"
 
-fclean		:		clean
-							@rm -f $(NAME)
-							@echo "FCLEAN: OK"
+fclean		:	clean
+			@rm -f $(NAME)
+                        @echo "FCLEAN: OK"
 
-re				:		fclean all
+re		:	fclean all
 
-.PHONY		:		all clean fclean re
+.PHONY		:	all clean fclean re

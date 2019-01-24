@@ -7,7 +7,7 @@
 
 #include "Circuit.hpp"
 
-Circuit::Circuit()
+Circuit::Circuit() : nts::IComponent()
 {
 }
 
