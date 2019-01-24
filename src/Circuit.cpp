@@ -14,9 +14,9 @@ Circuit::Circuit() : nts::IComponent()
 void Circuit::addComponent(std::string name, std::string type)
 {
         // create new component and add it to the vector container
-        std::cout << "Type: " << type << ", name: " << name << std::endl;
+        std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
         Component c(name, type);
-        // this->_circuit.push_back(c);
+        this->_circuit.push_back(c);
 }
 
 void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2, std::size_t pin_2)

@@ -21,7 +21,7 @@ CC		=	g++
 
 INCLUDE		=	-I./include/
 
-CPPFLAGS	=	$(INCLUDE) -std=c++17 -Wall -Wextra
+CPPFLAGS	=	$(INCLUDE) -std=c++17 -Wall -Wextra -g
 
 $(NAME)		:	$(OBJ)
 			$(CC) -o $(NAME) $(OBJ)

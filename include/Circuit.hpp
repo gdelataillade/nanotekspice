@@ -20,7 +20,7 @@ class Circuit : public nts::IComponent
                 void removeComponent();
                 void runSimulation();
 	private:
-                std::vector<nts::IComponent> _circuit;
+                std::vector<Component> _circuit;
 };
 
 #endif /* !CIRCUIT_HPP_ */

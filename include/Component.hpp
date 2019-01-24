@@ -13,8 +13,9 @@
 class Component : public nts::IComponent {
    public:
     Component(std::string name, std::string type);
+    virtual ~Component() {};
     nts::Tristate compute(std::size_t pin = 1) override;
-    void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin);
+    void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
     void dump() const override;
 
    protected:
