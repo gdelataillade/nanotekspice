@@ -14,8 +14,8 @@ nts::Tristate Component::compute(std::size_t pin) {}
 
 void Component::setLink(std::size_t pin, Component &other,
                         std::size_t otherPin) {
-    _links.insert(pin, otherPin);
-    other._links.insert(otherPin, pin);
+    _links.insert({pin, otherPin});
+    other._links.insert({otherPin, pin});
 }
 
 nts::Tristate Component::gateAnd(nts::Tristate &int1, nts::Tristate &int2) {
