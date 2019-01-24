@@ -11,8 +11,10 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
 #include <exception>
 #include "Circuit.hpp"
+#include "IComponent.hpp"
 
 class Parser
 {
