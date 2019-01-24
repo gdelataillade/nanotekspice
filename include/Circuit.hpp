@@ -19,7 +19,7 @@ class Circuit : public nts::IComponent
                 void addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2, std::size_t pin_2);
                 void removeComponent();
                 void runSimulation();
-	private:
+	protected:
                 std::vector<Component> _circuit;
 };
 
