@@ -15,7 +15,7 @@ void Circuit::addComponent(std::string name, std::string type)
 {
         // create new component and add it to the vector container
         std::cout << "Type: " << type << ", name: " << name << std::endl;
-        // Component c(name, type);
+        Component c(name, type);
         // this->_circuit.push_back(c);
 }
 

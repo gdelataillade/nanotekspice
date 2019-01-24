@@ -20,6 +20,11 @@ void Component::setLink(std::size_t pin, IComponent &other,
     downcast->_links.insert({otherPin, pin});
 }
 
+void Component::dump() const
+{
+    // delete component
+}
+
 nts::Tristate Component::gateAnd(nts::Tristate &int1, nts::Tristate &int2) {
     if (!int1 || !int2)
         return nts::FALSE;

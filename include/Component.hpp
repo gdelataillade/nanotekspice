@@ -15,7 +15,7 @@ class Component : public nts::IComponent {
     Component(std::string name, std::string type);
     nts::Tristate compute(std::size_t pin = 1) override;
     void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin);
-    void dump();
+    void dump() const override;
 
    protected:
     std::string _name;
