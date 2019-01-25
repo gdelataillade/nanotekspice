@@ -14,10 +14,14 @@ nts::Tristate Component::compute(std::size_t pin) {}
 
 void Component::setLink(std::size_t pin, IComponent &other,
                         std::size_t otherPin) {
-    Component *downcast = dynamic_cast<Component*>(&other);
+    // Component *downcast = dynamic_cast<Component*>(&other);
+    // downcast->_links.insert({otherPin, pin});
 
-    _links.insert({pin, otherPin});
-    downcast->_links.insert({otherPin, pin});
+    this->_links.push_back(std::make_pair(pin, otherPin));
+
+    for (int i = 0; i < this->_links.size(); i++) {
+        std::cout << _links[i].first << " ~ " << _links[i].second << std::endl;
+    }
 }
 
 void Component::dump() const
