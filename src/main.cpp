@@ -16,5 +16,6 @@ int main(int argc, char const *argv[]) {
     std::string path(argv[1]);
     Parser p(path, c);
     p.fillCircuit();
+    c->runSimulation();
     return 0;
 }

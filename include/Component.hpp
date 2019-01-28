@@ -22,17 +22,16 @@ class Component : public nts::IComponent {
    protected:
     std::string _name;
     std::string _type;
-    std::map<std::size_t, nts::Tristate> _outputs;
+    std::vector<std::pair<std::size_t, nts::Tristate>> _outputs;
     std::vector<std::pair<std::size_t, std::size_t>> _links;
-   //  std::map<std::size_t, std::size_t> _links;
+    std::vector<Component*> _cmpt; // donne la liste des linked components
+
     nts::Tristate gateAnd(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateOr(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateNor(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateNand(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateXor(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateXnor(nts::Tristate &int1, nts::Tristate &int2);
-
-   private:
 };
 
 #endif /* !COMPONENT_HPP_ */

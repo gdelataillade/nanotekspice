@@ -10,18 +10,24 @@
 Component::Component(std::string name, std::string type)
     : _name(name), _type(type), nts::IComponent() {}
 
-nts::Tristate Component::compute(std::size_t pin) {}
+nts::Tristate Component::compute(std::size_t pin)
+{
+    for (int i = 0; i < this->_links.size(); i++) {
+        std::cout << _links[i].first << " ~ " << _links[i].second << " with " << _cmpt[i]->getName() << std::endl;
+    }
+    // Trouver les inputs (outputs du component precedent) et compute
+}
 
 void Component::setLink(std::size_t pin, IComponent &other,
                         std::size_t otherPin) {
-    // Component *downcast = dynamic_cast<Component*>(&other);
-    // downcast->_links.insert({otherPin, pin});
+    Component *downcast = dynamic_cast<Component*>(&other);
 
     this->_links.push_back(std::make_pair(pin, otherPin));
+    this->_cmpt.push_back(downcast);
 
-    for (int i = 0; i < this->_links.size(); i++) {
-        std::cout << _links[i].first << " ~ " << _links[i].second << std::endl;
-    }
+    // for (int i = 0; i < this->_links.size(); i++) {
+    //     std::cout << _links[i].first << " ~ " << _links[i].second << " with " << _cmpt[i]->getName() << std::endl;
+    // }
 }
 
 void Component::dump() const

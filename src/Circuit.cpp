@@ -40,6 +40,7 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
     }
     // std::cout << cmpt2 <<  " pos: " << pos2 << std::endl;
     this->_circuit[pos1].setLink(pin_1, this->_circuit[pos2], pin_2);
+    this->_circuit[pos2].setLink(pin_2, this->_circuit[pos1], pin_1);
 }
 
 void Circuit::removeComponent() {
@@ -50,4 +51,9 @@ void Circuit::removeComponent() {
 void Circuit::runSimulation() {
     // go through the vector container
     // and run each component with simulate()
+    std::cout << "====RUN SIMULATION====" << std::endl;
+    for (int i = 0; i < this->_circuit.size(); i++) {
+        std::cout << "---" << this->_circuit[i].getName() << "---" << std::endl;
+        std::cout << this->_circuit[i].compute(0) << std::endl;
+    }
 }
