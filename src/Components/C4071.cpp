@@ -7,6 +7,6 @@
 
 #include "C4071.hpp"
 
-C4071::C4071() {}
+C4071::C4071(std::string const &name) : Component(name, "4071") {}
 
 C4071::~C4071() {}

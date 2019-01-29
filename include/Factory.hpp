@@ -9,7 +9,6 @@
 #define FACTORY_HPP_
 
 #include "C4071.hpp"
-#include "Component.hpp"
 
 class Factory {
    public:
@@ -18,7 +17,8 @@ class Factory {
 
    protected:
    private:
-    Component* create4071(const std ::string& value) const noexcept;
+    std::map<const std::string, Component (*)(std::string const &name)> chipsetConstructor;
+    Component* create4071(std::string const &name);
 };
 
 #endif /* !FACTORY_HPP_ */

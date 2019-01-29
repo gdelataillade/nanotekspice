@@ -7,10 +7,12 @@
 
 #include "Factory.hpp"
 
-Factory::Factory() {}
+Factory::Factory() {
+    this->chipsetConstructor["4071"] = &Factory::create4071;
+}
 
 Factory::~Factory() {}
 
-Component* Factory::create4071(const std ::string& value) const noexcept {
-    return nullptr;
+Component* Factory::create4071(std::string const &name){
+    return (new C4071(name));
 }
