@@ -22,6 +22,7 @@ class Component : public nts::IComponent {
    protected:
     std::string _name;
     std::string _type;
+    nts::Tristate _state;
     std::vector<std::pair<std::size_t, nts::Tristate>> _outputs;
     std::vector<std::pair<std::size_t, std::size_t>> _links;
     std::vector<Component*> _cmpt; // donne la liste des linked components

@@ -15,7 +15,7 @@ nts::Tristate Component::compute(std::size_t pin)
     for (int i = 0; i < this->_links.size(); i++) {
         std::cout << _links[i].first << " ~ " << _links[i].second << " with " << _cmpt[i]->getName() << std::endl;
     }
-    // Trouver les inputs (outputs du component precedent) et compute
+    // Trouver les inputs (outputs du component precedent) et computex
 }
 
 void Component::setLink(std::size_t pin, IComponent &other,
