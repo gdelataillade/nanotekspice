@@ -12,10 +12,9 @@
 
 class C4071 : public Component {
    public:
-    C4071();
+    C4071(std::string const &name);
     ~C4071();
 
-   protected:
    private:
 };
 
