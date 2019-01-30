@@ -13,6 +13,6 @@ Factory::Factory() {
 
 Factory::~Factory() {}
 
-Component* Factory::create4071(std::string const &name){
-    return (new C4071(name));
+Component *Factory::create4071(std::string const &name) const noexcept {
+    return dynamic_cast<Component*>(new C4071(name));
 }

@@ -6,7 +6,7 @@
 */
 
 #ifndef FACTORY_HPP_
-#define FACTORY_HPP_
+#define FACT2ORY_HPP_
 
 #include "C4071.hpp"
 
@@ -17,8 +17,8 @@ class Factory {
 
    protected:
    private:
-    std::map<const std::string, Component (*)(std::string const &name)> chipsetConstructor;
-    Component* create4071(std::string const &name);
+    std::map<std::string, Component *(Factory::*)(std::string const &value) const noexcept> chipsetConstructor;
+    Component* create4071(std::string const &name) const noexcept;
 };
 
 #endif /* !FACTORY_HPP_ */

@@ -12,7 +12,8 @@ SRC		=	$(SRC_CLASS)	\
                         ./src/Parser.cpp \
                         ./src/Circuit.cpp \
                         ./src/Component.cpp	\
-						./src/Factory.cpp
+						./src/Factory.cpp 			\
+						./src/Components/C4071.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -20,10 +21,9 @@ NAME		=	nanotekspice
 
 CC		=	g++
 
-INCLUDE		=	-I./include/		\
-				-I./include/Components
+INCLUDE		=	-I./include/
 
-CPPFLAGS	=	$(INCLUDE) -std=c++17 -Wall -Wextra -g
+CPPFLAGS	=	$(INCLUDE) -std=c++17 -Wall -g
 
 $(NAME)		:	$(OBJ)
 			$(CC) -o $(NAME) $(OBJ)
