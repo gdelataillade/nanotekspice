@@ -7,7 +7,8 @@
 
 #include "Circuit.hpp"
 
-Circuit::Circuit() : nts::IComponent() {}
+Circuit::Circuit(std::vector<std::pair<std::string, std::size_t>> inputs)
+: nts::IComponent(), _inputs(inputs) {}
 
 void Circuit::addComponent(std::string name, std::string type)
 {

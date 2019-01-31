@@ -50,7 +50,7 @@ int main(int argc, char const *argv[]) {
     }
     std::vector<std::pair<std::string, std::size_t>> inputs;
     setInputs(&inputs, argc, argv);
-    Circuit *c = new Circuit();
+    Circuit *c = new Circuit(inputs);
     std::string path(argv[1]);
     Parser p(path, c);
     p.fillCircuit();
