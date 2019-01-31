@@ -17,10 +17,10 @@ class Factory {
 
    protected:
    private:
-    std::map<std::string, Component *(Factory::*)(std::string const &value) const noexcept> chipsetConstructor;
-    Component *createComponent(const std::string &type, const std::string &name);
+    std::map<std::string, std::function<Component *(const std::string &)>> chipsetConstructor;
+    Component *createComponent(std::string const &type, std::string const &name);
 
-    Component* create4071(std::string const &name) const noexcept;
+    Component* create4071(std::string const &name);
 };
 
 #endif /* !FACTORY_HPP_ */
