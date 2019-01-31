@@ -8,6 +8,8 @@
 #ifndef FACTORY_HPP_
 #define FACTORY_HPP_
 
+#include <functional>
+
 #include "C4071.hpp"
 
 class Factory {
