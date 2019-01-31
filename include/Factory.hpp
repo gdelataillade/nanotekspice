@@ -18,6 +18,8 @@ class Factory {
    protected:
    private:
     std::map<std::string, Component *(Factory::*)(std::string const &value) const noexcept> chipsetConstructor;
+    Component *createComponent(const std::string &type, const std::string &name);
+
     Component* create4071(std::string const &name) const noexcept;
 };
 
