@@ -6,7 +6,7 @@
 */
 
 #ifndef FACTORY_HPP_
-#define FACT2ORY_HPP_
+#define FACTORY_HPP_
 
 #include "C4071.hpp"
 
