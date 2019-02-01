@@ -9,7 +9,7 @@
 #include "Parser.hpp"
 
 void
-setInputs(std::vector<std::pair<std::string, nts::Tristate>> *inputs, int argc, char const *argv[])
+setInputs(pairList *inputs, int argc, char const *argv[])
 {
     int it = 2;
     std::string name;
@@ -57,7 +57,7 @@ int main(int argc, char const *argv[]) {
         std::cerr << "Don't forget the filepath!" << std::endl;
         return 0;  // TROW EXCEPTION !
     }
-    std::vector<std::pair<std::string, nts::Tristate>> inputs;
+    pairList inputs;
     setInputs(&inputs, argc, argv);
     Circuit *c = new Circuit(inputs);
     std::string path(argv[1]);

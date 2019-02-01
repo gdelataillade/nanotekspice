@@ -11,11 +11,9 @@
 #include "Component.hpp"
 #include "IComponent.hpp"
 
-// use typedef for vector of pairs
-
 class Circuit : public nts::IComponent {
    public:
-    Circuit(std::vector<std::pair<std::string, nts::Tristate>> inputs);
+    Circuit(pairList inputs);
     virtual ~Circuit() {};
     void addComponent(std::string name, std::string type);
     void addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
@@ -29,7 +27,7 @@ class Circuit : public nts::IComponent {
 
    private:
     std::vector<Component> _circuit;
-    std::vector<std::pair<std::string, nts::Tristate>> _inputs; // inputs values defined in prompt
+    pairList _inputs; // inputs values defined in prompt
 };
 
 #endif /* !CIRCUIT_HPP_ */

@@ -7,7 +7,7 @@
 
 #include "Circuit.hpp"
 
-Circuit::Circuit(std::vector<std::pair<std::string, nts::Tristate>> inputs)
+Circuit::Circuit(pairList inputs)
 : nts::IComponent(), _inputs(inputs) {}
 
 void Circuit::addComponent(std::string name, std::string type)

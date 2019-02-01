@@ -34,4 +34,6 @@ namespace nts {
     };
 }  // namespace nts
 
+typedef std::vector<std::pair<std::string, nts::Tristate>> pairList;
+
 #endif /* !ICOMPONENT_HPP_ */
