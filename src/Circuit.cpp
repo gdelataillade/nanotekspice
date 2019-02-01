@@ -53,7 +53,7 @@ void Circuit::runSimulation() {
     // go through the vector container
     // and run each component with simulate()
     std::cout << "====RUN SIMULATION====" << std::endl;
-    for (int i = 0; i < this->_circuit.size(); i++) {
+    for (int i = 0; i < (int)this->_circuit.size(); i++) {
         std::cout << "---" << this->_circuit[i].getName() << "---" << std::endl;
         std::cout << this->_circuit[i].compute(0) << std::endl;
     }

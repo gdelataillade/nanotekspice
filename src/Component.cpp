@@ -8,14 +8,15 @@
 #include "Component.hpp"
 
 Component::Component(std::string name, std::string type)
-    : _name(name), _type(type), nts::IComponent() {}
+    : nts::IComponent(), _name(name), _type(type)  {}
 
 nts::Tristate Component::compute(std::size_t pin)
 {
-    for (int i = 0; i < this->_links.size(); i++) {
+    for (int i = 0; i < (int)this->_links.size(); i++) {
         std::cout << _links[i].first << " ~ " << _links[i].second << " with " << _cmpt[i]->getName() << std::endl;
     }
     // Trouver les inputs (outputs du component precedent) et computex
+    return nts::UNDEFINED;
 }
 
 void Component::setLink(std::size_t pin, IComponent &other,
@@ -33,6 +34,7 @@ void Component::setLink(std::size_t pin, IComponent &other,
 void Component::dump() const
 {
     // delete component
+    return;
 }
 
 std::string Component::getName() const

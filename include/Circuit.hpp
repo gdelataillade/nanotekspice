@@ -20,10 +20,10 @@ class Circuit : public nts::IComponent {
                  std::size_t pin_2);
     void removeComponent();
     void runSimulation();
-    nts::Tristate compute(std::size_t pin = 1) override{};
+    nts::Tristate compute(std::size_t pin = 1) override { return nts::UNDEFINED; };
     void setLink(std::size_t pin, nts::IComponent &other,
                  std::size_t otherPin) override{};
-    void dump() const override{};
+    void dump() const override { return; };
 
    private:
     std::vector<Component> _circuit;
