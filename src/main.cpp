@@ -5,16 +5,18 @@
 ** main
 */
 
+#include "IComponent.hpp"
 #include "Parser.hpp"
 
 void
-setInputs(std::vector<std::pair<std::string, std::size_t>> *inputs, int argc, char const *argv[])
+setInputs(std::vector<std::pair<std::string, nts::Tristate>> *inputs, int argc, char const *argv[])
 {
     int it = 2;
     std::string name;
     int value;
     int pos;
-    std::pair<std::string, int> pair;
+    std::pair<std::string, nts::Tristate> pair;
+    nts::Tristate state;
 
     while (it < argc) {
         std::cout << argv[it] << ": ";
@@ -22,7 +24,14 @@ setInputs(std::vector<std::pair<std::string, std::size_t>> *inputs, int argc, ch
         name = std::string(argv[it]).substr(0, pos);
         value = atoi(std::string(argv[it]).substr(pos + 1).c_str());
         std::cout << name << " ~ " << value << std::endl;
-        pair = std::make_pair(name, value);
+        if (value == 0) {
+            state = nts::FALSE;
+        } else if (value == 1) {
+            state = nts::TRUE;
+        } else {
+            state = nts::UNDEFINED;
+        }
+        pair = std::make_pair(name, state);
         inputs->push_back(pair);
         it++;
     }
@@ -48,7 +57,7 @@ int main(int argc, char const *argv[]) {
         std::cerr << "Don't forget the filepath!" << std::endl;
         return 0;  // TROW EXCEPTION !
     }
-    std::vector<std::pair<std::string, std::size_t>> inputs;
+    std::vector<std::pair<std::string, nts::Tristate>> inputs;
     setInputs(&inputs, argc, argv);
     Circuit *c = new Circuit(inputs);
     std::string path(argv[1]);

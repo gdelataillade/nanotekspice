@@ -7,14 +7,21 @@
 
 #include "Circuit.hpp"
 
-Circuit::Circuit(std::vector<std::pair<std::string, std::size_t>> inputs)
+Circuit::Circuit(std::vector<std::pair<std::string, nts::Tristate>> inputs)
 : nts::IComponent(), _inputs(inputs) {}
 
 void Circuit::addComponent(std::string name, std::string type)
 {
     // create new component and add it to the vector container
     std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
-    const Component c(name, type);
+    Component c(name, type);
+
+    for (int pos = 0; pos < (int)_inputs.size(); pos++) {
+        if (name == _inputs[pos].first) {
+            std::cout << "Set state for " << name << " to " << _inputs[pos].second << std::endl;
+            c.setstate(_inputs[pos].second);
+        }
+    }
     this->_circuit.push_back(c);
 }
 
