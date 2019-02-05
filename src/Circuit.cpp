@@ -10,11 +10,12 @@
 Circuit::Circuit(pairList inputs)
 : nts::IComponent(), _inputs(inputs) {}
 
-void Circuit::addComponent(std::string name, std::string type)
+void Circuit::addComponent(std::string name, std::string type, Factory f)
 {
     // create new component and add it to the vector container
     std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
-    Component c(name, type);
+    // Component c(name, type);
+    Component c = f.createComponent(type, name);
 
     for (int pos = 0; pos < (int)_inputs.size(); pos++) {
         if (name == _inputs[pos].first) {

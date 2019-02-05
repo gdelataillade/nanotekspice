@@ -16,11 +16,11 @@ class Factory {
    public:
     Factory();
     ~Factory();
+    Component *createComponent(std::string const &type, std::string const &name);
 
    protected:
    private:
     std::map<std::string, std::function<Component *(const std::string &)>> chipsetConstructor;
-    Component *createComponent(std::string const &type, std::string const &name);
 
     Component* create4071(std::string const &name);
 };
