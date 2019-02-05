@@ -27,7 +27,7 @@ class Circuit : public nts::IComponent {
     void dump() const override { return; };
 
    private:
-    std::vector<Component*> _circuit;
+    std::vector<Component> _circuit;
     pairList _inputs; // inputs values defined in prompt
 };
 
