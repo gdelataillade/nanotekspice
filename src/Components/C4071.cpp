@@ -15,5 +15,6 @@ C4071::~C4071() {}
 
 nts::Tristate C4071::compute(std::size_t pin)
 {
-    return nts::UNDEFINED;
+    nts::Tristate a, b = nts::TRUE;
+    return this->gateOr(a, b);
 }
