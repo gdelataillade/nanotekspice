@@ -18,7 +18,7 @@ Factory::~Factory() {}
 Component *Factory::createComponent(std::string const &type, std::string const &name)
 {
     if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
-        return NULL;
+        return nullptr;
     return this->chipsetConstructor[type](name); 
 }
 
