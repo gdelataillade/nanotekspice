@@ -9,6 +9,8 @@
 
 Factory::Factory() {
     this->chipsetConstructor["4071"] = std::bind(&Factory::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["input"] = std::bind(&Factory::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["output"] = std::bind(&Factory::create4071, this, std::placeholders::_1);
 }
 
 Factory::~Factory() {}
@@ -21,5 +23,5 @@ Component *Factory::createComponent(std::string const &type, std::string const &
 }
 
 Component *Factory::create4071(std::string const &name){
-    return dynamic_cast<Component*>(new C4071(name));
+    return new C4071(name);
 }
