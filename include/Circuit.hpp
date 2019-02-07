@@ -8,15 +8,17 @@
 #ifndef CIRCUIT_HPP_
 #define CIRCUIT_HPP_
 
-#include "Factory.hpp"
 #include "Component.hpp"
 #include "IComponent.hpp"
+#include <functional>
+
+#include "C4071.hpp"
 
 class Circuit : public nts::IComponent {
    public:
     Circuit(pairList inputs);
     virtual ~Circuit() {};
-    void addComponent(std::string name, std::string type, Factory f);
+    void addComponent(std::string name, std::string type);
     void addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
                  std::size_t pin_2);
     void removeComponent();
@@ -29,6 +31,10 @@ class Circuit : public nts::IComponent {
    private:
     std::vector<Component*> _circuit;
     pairList _inputs; // inputs values defined in prompt
+
+    std::map<std::string, std::function<Component *(const std::string &)>> chipsetConstructor;
+
+    Component* create4071(std::string const &name);
 };
 
 #endif /* !CIRCUIT_HPP_ */

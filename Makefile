@@ -12,7 +12,6 @@ SRC		=	$(SRC_CLASS)	\
                         ./src/Parser.cpp \
                         ./src/Circuit.cpp \
                         ./src/Component.cpp	\
-						./src/Factory.cpp 			\
 						./src/Components/C4071.cpp
 
 OBJ		=	$(SRC:.cpp=.o)

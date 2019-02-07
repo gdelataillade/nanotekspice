@@ -19,7 +19,6 @@ void Parser::fillCircuit()
     std::string arr[3];
     std::string arr2[3];
     int pos;
-    Factory f;
 
     file.open(this->_path);
     if (!file) {
@@ -41,7 +40,7 @@ void Parser::fillCircuit()
                 }
                 it = 0;
                 if (level == 1) { // chipsets
-                    this->_circuit->addComponent(arr[1], arr[0], f);
+                    this->_circuit->addComponent(arr[1], arr[0]);
                 }
                 else if (level == 2) { // links
                     pos = arr[0].find(":");
