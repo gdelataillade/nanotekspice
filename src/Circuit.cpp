@@ -42,7 +42,6 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
         std::cerr << "Error: couldn't find the component to link in the container" << std::endl; // EXCEPTION
         return;
     }
-    // std::cout << cmpt1 <<  " pos: " << pos1 << std::endl;
     auto buf2 = std::find_if(this->_circuit.begin(), this->_circuit.end(),
             [cmpt2](const Component* obj) {
                 return obj->getName() == cmpt2;
@@ -52,7 +51,6 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
         std::cerr << "Error: couldn't find the component to link in the container" << std::endl; // EXCEPTION
         return;
     }
-    // std::cout << cmpt2 <<  " pos: " << pos2 << std::endl;
     this->_circuit[pos1]->setLink(pin_1, *this->_circuit[pos2], pin_2);
     this->_circuit[pos2]->setLink(pin_2, *this->_circuit[pos1], pin_1);
 }
@@ -63,8 +61,6 @@ void Circuit::removeComponent() {
 }
 
 void Circuit::runSimulation() {
-    // go through the vector container
-    // and run each component with simulate()
     std::cout << "====RUN SIMULATION====" << std::endl;
     for (int i = 0; i < (int)this->_circuit.size(); i++) {
         std::cout << "---" << this->_circuit[i]->getName() << "---" << std::endl;

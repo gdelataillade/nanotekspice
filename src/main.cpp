@@ -5,13 +5,11 @@
 ** main
 */
 
-
 /*
 Factory dans le circuit
 Les maps a la place des vector de pair
 Les exeptions
 */
-
 
 #include "IComponent.hpp"
 #include "Parser.hpp"
@@ -47,7 +45,7 @@ setInputs(pairList *inputs, int argc, char const *argv[])
 
 bool executeCommand(std::string cmd, Circuit **c)
 {
-    if (cmd == "exit") {
+    if (cmd == "exit" || cmd == "quit") {
         return false;
     }
     if (cmd == "simulate") {

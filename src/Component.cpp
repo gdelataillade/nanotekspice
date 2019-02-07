@@ -12,10 +12,14 @@ Component::Component(std::string name, std::string type)
 
 nts::Tristate Component::compute(std::size_t pin)
 {
-    for (int i = 0; i < (int)this->_links.size(); i++) {
-        std::cout << _links[i].first << " ~ " << _links[i].second << " with " << _cmpt[i]->getName() << std::endl;
+    std::map<std::size_t, std::size_t>::iterator itr;
+    int tmp; // only for debug
+
+    for (itr = _links.begin(); itr != _links.end(); itr++) {
+        tmp = std::distance( _links.begin(), itr);
+        std::cout << itr->first << " ~ " << itr->second << " with " << _cmpt[tmp]->getName() << std::endl;
     }
-    // Trouver les inputs (outputs du component precedent) et computex
+    // Trouver les inputs (outputs du component precedent) et compute
     return nts::UNDEFINED;
 }
 
@@ -23,12 +27,8 @@ void Component::setLink(std::size_t pin, IComponent &other,
                         std::size_t otherPin) {
     Component *downcast = dynamic_cast<Component*>(&other);
 
-    this->_links.push_back(std::make_pair(pin, otherPin));
+    this->_links.insert(std::pair<std::size_t, std::size_t>(pin, otherPin));
     this->_cmpt.push_back(downcast);
-
-    // for (int i = 0; i < this->_links.size(); i++) {
-    //     std::cout << _links[i].first << " ~ " << _links[i].second << " with " << _cmpt[i]->getName() << std::endl;
-    // }
 }
 
 void Component::dump() const
