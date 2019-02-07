@@ -5,6 +5,14 @@
 ** main
 */
 
+
+/*
+Factory dans le circuit
+Les maps a la place des vector de pair
+Les exeptions
+*/
+
+
 #include "IComponent.hpp"
 #include "Parser.hpp"
 
