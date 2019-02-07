@@ -18,6 +18,8 @@ void Circuit::addComponent(std::string name, std::string type, Factory f)
 
     Component *c = f.createComponent(type, name);
 
+    if (c == nullptr)
+        return; // EXCEPTION
     for (int pos = 0; pos < (int)_inputs.size(); pos++) {
         if (name == _inputs[pos].first) {
             std::cout << "Set state for " << name << " to " << _inputs[pos].second << std::endl;
