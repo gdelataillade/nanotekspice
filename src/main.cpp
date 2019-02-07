@@ -14,8 +14,7 @@ Les exeptions
 #include "IComponent.hpp"
 #include "Parser.hpp"
 
-void
-setInputs(pairList *inputs, int argc, char const *argv[])
+void setInputs(pairList *inputs, int argc, char const *argv[])
 {
     int it = 2;
     std::string name;
@@ -54,6 +53,9 @@ bool executeCommand(std::string cmd, Circuit **c)
     }
     if (cmd == "display") {
         std::cout << "displaying..." << std::endl;
+    }
+    if (cmd == "\n") {
+        std::cout << "enter" << std::endl;
     }
     return true;
 }

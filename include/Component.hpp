@@ -18,12 +18,11 @@ class Component : public nts::IComponent {
     void setLink(std::size_t pin, nts::IComponent &other, std::size_t otherPin) override;
     void dump() const override;
     std::string getName() const;
-    void setstate(nts::Tristate state) { _state = state; };
+    void setOutputs(nts::Tristate state);
 
    protected:
     std::string _name;
     std::string _type;
-    nts::Tristate _state;
     std::map<std::size_t, nts::Tristate> _outputs;
     std::map<std::size_t, std::size_t> _links;
     std::vector<Component*> _cmpt; // donne la liste des linked components

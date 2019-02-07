@@ -48,7 +48,7 @@ void Circuit::addComponent(std::string name, std::string type)
     for (int pos = 0; pos < (int)_inputs.size(); pos++) {
         if (name == _inputs[pos].first) {
             std::cout << "Set state for " << name << " to " << _inputs[pos].second << std::endl;
-            c->setstate(_inputs[pos].second);
+            c->setOutputs(_inputs[pos].second);
         }
     }
     this->_circuit.push_back(c);

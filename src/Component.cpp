@@ -31,6 +31,11 @@ void Component::setLink(std::size_t pin, IComponent &other,
     this->_cmpt.push_back(downcast);
 }
 
+void Component::setOutputs(nts::Tristate state)
+{
+    this->_outputs.insert(std::pair<std::size_t, nts::Tristate>(1, state));
+}
+
 void Component::dump() const
 {
     // delete component
