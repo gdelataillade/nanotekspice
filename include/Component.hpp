@@ -19,6 +19,7 @@ class Component : public nts::IComponent {
     void dump() const override;
     std::string getName() const;
     void setOutputs(nts::Tristate state);
+    nts::Tristate getOutput(std::size_t pin);
 
    protected:
     std::string _name;

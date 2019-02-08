@@ -23,8 +23,8 @@ Circuit::Circuit(pairList inputs)
     this->chipsetConstructor["4514"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4801"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["2716"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["input"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["output"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["input"] = std::bind(&Circuit::createInput, this, std::placeholders::_1);
+    this->chipsetConstructor["output"] = std::bind(&Circuit::createOutput, this, std::placeholders::_1);
     this->chipsetConstructor["true"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["false"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["clock"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -87,13 +87,22 @@ void Circuit::removeComponent() {
 
 void Circuit::runSimulation() {
     std::cout << "====RUN SIMULATION====" << std::endl;
-    for (int i = 0; i < (int)this->_circuit.size(); i++) {
-        std::cout << "---" << this->_circuit[i]->getName() << "---" << std::endl;
-        std::cout << this->_circuit[i]->compute(0) << std::endl;
-    }
+    // for (int i = 0; i < (int)this->_circuit.size(); i++) {
+    //     std::cout << "---" << this->_circuit[i]->getName() << "---" << std::endl;
+    //     std::cout << this->_circuit[i]->compute(3) << std::endl;
+    // }
+    std::cout << this->_circuit[2]->compute(1) << std::endl;
 }
 
 
 Component *Circuit::create4071(std::string const &name){
     return new C4071(name);
+}
+
+Component *Circuit::createInput(std::string const &name) {
+    return new Input(name);
+}
+
+Component *Circuit::createOutput(std::string const &name) {
+    return new Output(name);
 }

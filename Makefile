@@ -9,10 +9,12 @@ SRC_CLASS	=
 
 SRC		=	$(SRC_CLASS)	\
 			./src/main.cpp \
-                        ./src/Parser.cpp \
-                        ./src/Circuit.cpp \
-                        ./src/Component.cpp	\
-						./src/Components/C4071.cpp
+            ./src/Parser.cpp \
+            ./src/Circuit.cpp \
+            ./src/Component.cpp	\
+			./src/Components/C4071.cpp	 \
+			./src/Components/Input.cpp	\
+			./src/Components/Output.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 

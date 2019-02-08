@@ -47,6 +47,12 @@ std::string Component::getName() const
     return this->_name;
 }
 
+nts::Tristate Component::getOutput(std::size_t pin)
+{
+    return this->_outputs.find(pin)->second;
+}
+
+
 nts::Tristate Component::gateAnd(nts::Tristate &int1, nts::Tristate &int2) {
     if (!int1 || !int2)
         return nts::FALSE;

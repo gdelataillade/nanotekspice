@@ -13,6 +13,8 @@
 #include <functional>
 
 #include "C4071.hpp"
+#include "Input.hpp"
+#include "Output.hpp"
 
 class Circuit : public nts::IComponent {
    public:
@@ -34,7 +36,10 @@ class Circuit : public nts::IComponent {
 
     std::map<std::string, std::function<Component *(const std::string &)>> chipsetConstructor;
 
-    Component* create4071(std::string const &name);
+    Component *createInput(std::string const &name);
+    Component *createOutput(std::string const &name);
+    Component *create4071(std::string const &name);
+
 };
 
 #endif /* !CIRCUIT_HPP_ */
