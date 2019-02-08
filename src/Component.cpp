@@ -17,7 +17,7 @@ nts::Tristate Component::compute(std::size_t pin)
 
     for (itr = _links.begin(); itr != _links.end(); itr++) {
         tmp = std::distance( _links.begin(), itr);
-        std::cout << itr->first << " ~ " << itr->second << " with " << _cmpt[tmp]->getName() << std::endl;
+        // std::cout << itr->first << " ~ " << itr->second << " with " << _cmpt[tmp]->getName() << std::endl;
     }
     // Trouver les inputs (outputs du component precedent) et compute
     return nts::UNDEFINED;

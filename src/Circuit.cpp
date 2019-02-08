@@ -34,7 +34,7 @@ Circuit::Circuit(pairList inputs)
 void Circuit::addComponent(std::string name, std::string type)
 {
     // create new component and add it to the vector container
-    std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
+    // std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
     // Component c(name, type);
 
 
@@ -47,7 +47,7 @@ void Circuit::addComponent(std::string name, std::string type)
         return; // EXCEPTION
     for (int pos = 0; pos < (int)_inputs.size(); pos++) {
         if (name == _inputs[pos].first) {
-            std::cout << "Set state for " << name << " to " << _inputs[pos].second << std::endl;
+            // std::cout << "Set state for " << name << " to " << _inputs[pos].second << std::endl;
             c->setOutputs(_inputs[pos].second);
         }
     }
@@ -57,7 +57,7 @@ void Circuit::addComponent(std::string name, std::string type)
 void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
                       std::size_t pin_2) {
     // find matching components with names and assign pins
-    std::cout << "Link " << cmpt1 << ":" << pin_1 << " to " << cmpt2 << ":" << pin_2 << std::endl;
+    // std::cout << "Link " << cmpt1 << ":" << pin_1 << " to " << cmpt2 << ":" << pin_2 << std::endl;
     auto buf1 = std::find_if(this->_circuit.begin(), this->_circuit.end(),
             [cmpt1](Component* obj) {
                 return obj->getName() == cmpt1;
@@ -86,14 +86,9 @@ void Circuit::removeComponent() {
 }
 
 void Circuit::runSimulation() {
-    std::cout << "====RUN SIMULATION====" << std::endl;
-    // for (int i = 0; i < (int)this->_circuit.size(); i++) {
-    //     std::cout << "---" << this->_circuit[i]->getName() << "---" << std::endl;
-    //     std::cout << this->_circuit[i]->compute(3) << std::endl;
-    // }
-    std::cout << this->_circuit[2]->compute(1) << std::endl;
+    // std::cout << "====RUN SIMULATION====" << std::endl;
+    std::cout << "s1=" << this->_circuit[2]->compute(1) << std::endl;
 }
-
 
 Component *Circuit::create4071(std::string const &name){
     return new C4071(name);

@@ -24,11 +24,11 @@ void setInputs(pairList *inputs, int argc, char const *argv[])
     nts::Tristate state;
 
     while (it < argc) {
-        std::cout << argv[it] << ": ";
+        // std::cout << argv[it] << ": ";
         pos = std::string(argv[it]).find("=");
         name = std::string(argv[it]).substr(0, pos);
         value = atoi(std::string(argv[it]).substr(pos + 1).c_str());
-        std::cout << name << " ~ " << value << std::endl;
+        // std::cout << name << " ~ " << value << std::endl;
         if (value == 0) {
             state = nts::FALSE;
         } else if (value == 1) {
@@ -48,14 +48,10 @@ bool executeCommand(std::string cmd, Circuit **c)
         return false;
     }
     if (cmd == "simulate") {
-        std::cout << "simulating..." << std::endl;
         (*c)->runSimulation();
     }
     if (cmd == "display") {
         std::cout << "displaying..." << std::endl;
-    }
-    if (cmd == "\n") {
-        std::cout << "enter" << std::endl;
     }
     return true;
 }
