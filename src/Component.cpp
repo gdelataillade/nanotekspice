@@ -57,6 +57,14 @@ nts::Tristate Component::getOutput(std::size_t pin)
     return this->_outputs.find(pin)->second;
 }
 
+nts::Tristate Component::gateNot(nts::Tristate &int1)
+{
+    if (int1)
+        return nts::FALSE;
+    else if (!int1)
+        return nts::TRUE;
+    return nts::UNDEFINED;
+}
 
 nts::Tristate Component::gateAnd(nts::Tristate &int1, nts::Tristate &int2) {
     if (!int1 || !int2)

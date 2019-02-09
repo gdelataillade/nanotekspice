@@ -29,6 +29,7 @@ class Component : public nts::IComponent {
     std::map<std::size_t, std::size_t> _links;
     std::vector<Component*> _cmpt; // donne la liste des linked components
 
+    nts::Tristate gateNot(nts::Tristate &int1);
     nts::Tristate gateAnd(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateOr(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateNor(nts::Tristate &int1, nts::Tristate &int2);

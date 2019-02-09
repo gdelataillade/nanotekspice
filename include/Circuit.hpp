@@ -32,6 +32,7 @@ class Circuit : public nts::IComponent {
 
    private:
     std::vector<Component*> _circuit;
+    std::size_t _nbCmpts = 0;
     pairList _inputs; // inputs values defined in prompt
 
     std::map<std::string, std::function<Component *(const std::string &)>> chipsetConstructor;
@@ -39,6 +40,7 @@ class Circuit : public nts::IComponent {
     Component *createInput(std::string const &name);
     Component *createOutput(std::string const &name);
     Component *create4071(std::string const &name);
+    Component *create4069(std::string const &name);
 
 };
 

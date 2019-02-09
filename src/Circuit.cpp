@@ -16,7 +16,7 @@ Circuit::Circuit(pairList inputs)
     this->chipsetConstructor["4017"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4030"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4040"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4069"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4069"] = std::bind(&Circuit::create4069, this, std::placeholders::_1);
     this->chipsetConstructor["4071"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4081"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4094"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -50,6 +50,7 @@ void Circuit::addComponent(std::string name, std::string type)
         }
     }
     this->_circuit.push_back(c);
+    this->_nbCmpts++;
 }
 
 void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
@@ -88,11 +89,15 @@ void Circuit::runSimulation() {
     // for loop to execute all outputs :
     std::size_t it;
 
-    for (it = 0; it <= this->_inputs.size(); ++it) {
+    for (it = 0; it < this->_nbCmpts; ++it) {
         if (this->_circuit[it]->getType() == "output") {
-            std::cout << "s1=" << this->_circuit[it]->compute(1) << std::endl;
+            std::cout << this->_circuit[it]->getName() << "=" << this->_circuit[it]->compute(1) << std::endl;
         }
     }
+}
+
+Component *Circuit::create4069(std::string const &name){
+    return new C4071(name);
 }
 
 Component *Circuit::create4071(std::string const &name){
