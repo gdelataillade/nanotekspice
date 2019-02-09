@@ -35,8 +35,6 @@ void Circuit::addComponent(std::string name, std::string type)
 {
     // create new component and add it to the vector container
     // std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
-    // Component c(name, type);
-
 
     if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
         return;
@@ -87,7 +85,14 @@ void Circuit::removeComponent() {
 
 void Circuit::runSimulation() {
     // std::cout << "====RUN SIMULATION====" << std::endl;
-    std::cout << "s1=" << this->_circuit[2]->compute(1) << std::endl;
+    // for loop to execute all outputs :
+    std::size_t it;
+
+    for (it = 0; it <= this->_inputs.size(); ++it) {
+        if (this->_circuit[it]->getType() == "output") {
+            std::cout << "s1=" << this->_circuit[it]->compute(1) << std::endl;
+        }
+    }
 }
 
 Component *Circuit::create4071(std::string const &name){

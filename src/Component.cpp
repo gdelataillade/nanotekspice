@@ -8,17 +8,17 @@
 #include "Component.hpp"
 
 Component::Component(std::string name, std::string type)
-    : nts::IComponent(), _name(name), _type(type)  {}
+: nts::IComponent(), _name(name), _type(type)  {}
 
 nts::Tristate Component::compute(std::size_t pin)
 {
-    std::map<std::size_t, std::size_t>::iterator itr;
-    int tmp; // only for debug
+    // std::map<std::size_t, std::size_t>::iterator itr;
+    // int tmp; // only for debug
 
-    for (itr = _links.begin(); itr != _links.end(); itr++) {
-        tmp = std::distance( _links.begin(), itr);
-        // std::cout << itr->first << " ~ " << itr->second << " with " << _cmpt[tmp]->getName() << std::endl;
-    }
+    // for (itr = _links.begin(); itr != _links.end(); itr++) {
+    //     tmp = std::distance( _links.begin(), itr);
+    //     std::cout << itr->first << " ~ " << itr->second << " with " << _cmpt[tmp]->getName() << std::endl;
+    // }
     // Trouver les inputs (outputs du component precedent) et compute
     return nts::UNDEFINED;
 }
@@ -45,6 +45,11 @@ void Component::dump() const
 std::string Component::getName() const
 {
     return this->_name;
+}
+
+std::string Component::getType() const
+{
+    return this->_type;
 }
 
 nts::Tristate Component::getOutput(std::size_t pin)
