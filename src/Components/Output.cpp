@@ -15,7 +15,8 @@ Output::~Output()
 {
 }
 
-nts::Tristate Output::compute(std::size_t pin) {
+nts::Tristate Output::compute(std::size_t pin)
+{
     // std::cout << "Compute at " << this->getName() << std::endl;
-    return this->_cmpt[0]->compute();
+    return this->_cmpt[0]->compute(this->_links[1]);
 }

@@ -15,8 +15,8 @@ Input::~Input()
 {
 }
 
-nts::Tristate Input::compute(std::size_t pin) {
+nts::Tristate Input::compute(std::size_t pin)
+{
     // std::cout << "Compute at " << this->getName() << std::endl;
-    // return this->_outputs.find(1)->second;
     return this->getOutput(1);
 }
