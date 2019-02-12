@@ -7,7 +7,7 @@
 
 #include "Circuit.hpp"
 
-Circuit::Circuit(pairList inputs)
+Circuit::Circuit(std::map<std::string, nts::Tristate> inputs)
 : nts::IComponent(), _inputs(inputs) {
     this->chipsetConstructor["4001"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4008"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -18,7 +18,7 @@ Circuit::Circuit(pairList inputs)
     this->chipsetConstructor["4040"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4069"] = std::bind(&Circuit::create4069, this, std::placeholders::_1);
     this->chipsetConstructor["4071"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4081"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4081"] = std::bind(&Circuit::create4081, this, std::placeholders::_1);
     this->chipsetConstructor["4094"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4514"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4801"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -40,13 +40,14 @@ void Circuit::addComponent(std::string name, std::string type)
         return;
 
     Component *c = this->chipsetConstructor[type](name);
+    std::map<std::string, nts::Tristate>::iterator it;
 
     if (c == nullptr)
         return; // EXCEPTION
-    for (int pos = 0; pos < (int)_inputs.size(); pos++) {
-        if (name == _inputs[pos].first) {
+    for (it = _inputs.begin(); it != _inputs.end(); it++) {
+        if (name == it->first) {
             // std::cout << "Set state for " << name << " to " << _inputs[pos].second << std::endl;
-            c->setOutputs(_inputs[pos].second);
+            c->setOutputs(it->second);
         }
     }
     this->_circuit.push_back(c);
@@ -97,7 +98,11 @@ void Circuit::runSimulation() {
 }
 
 Component *Circuit::create4069(std::string const &name){
-    return new C4071(name);
+    return new C4069(name);
+}
+
+Component *Circuit::create4081(std::string const &name){
+    return new C4081(name);
 }
 
 Component *Circuit::create4071(std::string const &name){

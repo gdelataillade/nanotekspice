@@ -21,6 +21,7 @@ class Component : public nts::IComponent {
     std::string getType() const;
     void setOutputs(nts::Tristate state);
     nts::Tristate getOutput(std::size_t pin);
+    std::size_t getLink(std::size_t value);
 
    protected:
     std::string _name;

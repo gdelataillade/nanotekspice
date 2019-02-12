@@ -57,6 +57,18 @@ nts::Tristate Component::getOutput(std::size_t pin)
     return this->_outputs.find(pin)->second;
 }
 
+std::size_t Component::getLink(std::size_t value)
+{
+    std::map<std::size_t, std::size_t>::iterator it;
+
+    for (it = this->_links.begin(); it != this->_links.end(); ++it) {
+        if (it->second == value) {
+            return it->first;
+        } 
+    }
+    return 0;
+}
+
 nts::Tristate Component::gateNot(nts::Tristate &int1)
 {
     if (int1)

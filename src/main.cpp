@@ -6,21 +6,19 @@
 */
 
 /*
-Factory dans le circuit
-Les maps a la place des vector de pair
-Les exeptions
+TODO:
+    Les exeptions
 */
 
 #include "IComponent.hpp"
 #include "Parser.hpp"
 
-void setInputs(pairList *inputs, int argc, char const *argv[])
+void setInputs(std::map<std::string, nts::Tristate> *inputs, int argc, char const *argv[])
 {
     int it = 2;
     std::string name;
     int value;
     int pos;
-    std::pair<std::string, nts::Tristate> pair;
     nts::Tristate state;
 
     while (it < argc) {
@@ -36,8 +34,7 @@ void setInputs(pairList *inputs, int argc, char const *argv[])
         } else {
             state = nts::UNDEFINED;
         }
-        pair = std::make_pair(name, state);
-        inputs->push_back(pair);
+        inputs->insert(std::pair<std::string, nts::Tristate>(name, state));
         it++;
     }
 }
@@ -61,7 +58,7 @@ int main(int argc, char const *argv[]) {
         std::cerr << "Don't forget the filepath!" << std::endl;
         return 0;  // TROW EXCEPTION !
     }
-    pairList inputs;
+    std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, argc, argv);
     Circuit *c = new Circuit(inputs);
     std::string path(argv[1]);

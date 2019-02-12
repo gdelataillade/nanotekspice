@@ -14,7 +14,9 @@ SRC		=	$(SRC_CLASS)	\
             ./src/Component.cpp	\
 			./src/Components/C4071.cpp	 \
 			./src/Components/Input.cpp	\
-			./src/Components/Output.cpp
+			./src/Components/Output.cpp	\
+			./src/Components/C4081.cpp	\
+			./src/Components/C4069.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 

@@ -2,18 +2,18 @@
 ** EPITECH PROJECT, 2019
 ** OOP_nanotekspice_2018
 ** File description:
-** C4071: 4 or gates
+** C4081: 4 and gates
 */
 
-#include "C4071.hpp"
+#include "C4081.hpp"
 
-C4071::C4071(std::string const &name) : Component(name, "4071") {
+C4081::C4081(std::string const &name) : Component(name, "4081") {
 
 }
 
-C4071::~C4071() {}
+C4081::~C4081() {}
 
-nts::Tristate C4071::compute(std::size_t pin)
+nts::Tristate C4081::compute(std::size_t pin)
 {
     // std::cout << "Compute at " << this->getName() << std::endl;
     std::size_t otherPin;
@@ -53,9 +53,9 @@ nts::Tristate C4071::compute(std::size_t pin)
         it = std::distance(this->_links.begin(), this->_links.find(13));
         int2 = this->_cmpt[it]->compute(otherPin);
     }
-    nts::Tristate res = this->gateOr(int1, int2);
+    nts::Tristate res = this->gateAnd(int1, int2);
 
     this->_outputs.insert(std::pair<std::size_t, nts::Tristate>(pin, res));
-    // // std::cout << "C4071: " << res << std::endl;
+    // // std::cout << "C4081: " << res << std::endl;
     return res;
 }
