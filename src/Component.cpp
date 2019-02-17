@@ -27,7 +27,9 @@ void Component::setLink(std::size_t pin, IComponent &other,
                         std::size_t otherPin) {
     Component *downcast = dynamic_cast<Component*>(&other);
 
-    this->_links.insert(std::pair<std::size_t, std::size_t>(pin, otherPin));
+    // this->_links.insert(std::pair<std::size_t, std::size_t>(pin, otherPin));
+    this->_pin.push_back(pin);
+    this->_otherPin.push_back(otherPin);
     this->_cmpt.push_back(downcast);
 }
 
@@ -57,16 +59,12 @@ nts::Tristate Component::getOutput(std::size_t pin)
     return this->_outputs.find(pin)->second;
 }
 
-std::size_t Component::getLink(std::size_t value)
+std::size_t Component::findIndex(std::size_t value)
 {
-    std::map<std::size_t, std::size_t>::iterator it;
+    std::vector<std::size_t>::iterator it = std::find(this->_pin.begin(), this->_pin.end(), value);
 
-    for (it = this->_links.begin(); it != this->_links.end(); ++it) {
-        if (it->second == value) {
-            return it->first;
-        } 
-    }
-    return 0;
+    // TODO: error check value not found: if it == _pin.end()
+    return std::distance(this->_pin.begin(), it);
 }
 
 nts::Tristate Component::gateNot(nts::Tristate &int1)

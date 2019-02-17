@@ -22,35 +22,35 @@ nts::Tristate C4081::compute(std::size_t pin)
     nts::Tristate int2;
 
     if (pin == 3) {
-        otherPin = this->_links[1];
-        it = std::distance(this->_links.begin(), this->_links.find(1));
+        it = this->findIndex(1);
+        otherPin = this->_otherPin[it];
         int1 = this->_cmpt[it]->compute(otherPin);
-        otherPin = this->_links[2];
-        it = std::distance(this->_links.begin(), this->_links.find(2));
+        it = this->findIndex(2);
+        otherPin = this->_otherPin[it];
         int2 = this->_cmpt[it]->compute(otherPin);
     }
     if (pin == 4) {
-        otherPin = this->_links[5];
-        it = std::distance(this->_links.begin(), this->_links.find(5));
+        it = this->findIndex(5);
+        otherPin = this->_otherPin[it];
         int1 = this->_cmpt[it]->compute(otherPin);
-        otherPin = this->_links[6];
-        it = std::distance(this->_links.begin(), this->_links.find(6));
+        it = this->findIndex(6);
+        otherPin = this->_otherPin[it];
         int2 = this->_cmpt[it]->compute(otherPin);
     }
     if (pin == 10) {
-        otherPin = this->_links[8];
-        it = std::distance(this->_links.begin(), this->_links.find(8));
+        it = this->findIndex(8);
+        otherPin = this->_otherPin[it];
         int1 = this->_cmpt[it]->compute(otherPin);
-        otherPin = this->_links[9];
-        it = std::distance(this->_links.begin(), this->_links.find(9));
+        it = this->findIndex(9);
+        otherPin = this->_otherPin[it];
         int2 = this->_cmpt[it]->compute(otherPin);
     }
     if (pin == 11) {
-        otherPin = this->_links[12];
-        it = std::distance(this->_links.begin(), this->_links.find(12));
+        it = this->findIndex(12);
+        otherPin = this->_otherPin[it];
         int1 = this->_cmpt[it]->compute(otherPin);
-        otherPin = this->_links[13];
-        it = std::distance(this->_links.begin(), this->_links.find(13));
+        it = this->findIndex(13);
+        otherPin = this->_otherPin[it];
         int2 = this->_cmpt[it]->compute(otherPin);
     }
     nts::Tristate res = this->gateAnd(int1, int2);

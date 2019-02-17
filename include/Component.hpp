@@ -21,13 +21,14 @@ class Component : public nts::IComponent {
     std::string getType() const;
     void setOutputs(nts::Tristate state);
     nts::Tristate getOutput(std::size_t pin);
-    std::size_t getLink(std::size_t value);
+    std::size_t findIndex(std::size_t value);
 
    protected:
     std::string _name;
     std::string _type;
     std::map<std::size_t, nts::Tristate> _outputs;
-    std::map<std::size_t, std::size_t> _links;
+    std::vector<std::size_t> _pin;
+    std::vector<std::size_t> _otherPin;
     std::vector<Component*> _cmpt; // donne la liste des linked components
 
     nts::Tristate gateNot(nts::Tristate &int1);

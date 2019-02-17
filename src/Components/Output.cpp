@@ -17,5 +17,5 @@ Output::~Output()
 
 nts::Tristate Output::compute(std::size_t pin)
 {
-    return this->_cmpt[0]->compute(this->_links[1]);
+    return this->_cmpt[0]->compute(this->_otherPin[0]);
 }
