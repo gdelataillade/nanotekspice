@@ -16,7 +16,6 @@ void Component::setLink(std::size_t pin, IComponent &other,
                         std::size_t otherPin) {
     Component *downcast = dynamic_cast<Component*>(&other);
 
-    // this->_links.insert(std::pair<std::size_t, std::size_t>(pin, otherPin));
     this->_pin.push_back(pin);
     this->_otherPin.push_back(otherPin);
     this->_cmpt.push_back(downcast);

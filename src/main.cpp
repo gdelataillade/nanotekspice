@@ -11,6 +11,7 @@ TODO:
     Changer valeurs input dans le terminal
     Free memory (dump)
     Gestions erreurs mauvais inputs/fichier de config
+    Creer autres chipsets (clock, nand, nor, ...)
 */
 
 #include "IComponent.hpp"

@@ -11,7 +11,7 @@ Circuit::Circuit(std::map<std::string, nts::Tristate> inputs)
     : nts::IComponent(), _inputs(inputs) {
     this->chipsetConstructor["4001"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4008"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4011"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4011"]        = std::bind(&Circuit::create4011, this, std::placeholders::_1);
     this->chipsetConstructor["4013"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4017"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4030"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -33,8 +33,7 @@ Circuit::Circuit(std::map<std::string, nts::Tristate> inputs)
 
 void Circuit::addComponent(std::string name, std::string type) {
     // create new component and add it to the vector container
-    // std::cout << "Type: [" << type << "], name: [" << name << "]" <<
-    // std::endl;
+    // std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
 
     if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
         return;
@@ -120,6 +119,10 @@ Component *Circuit::create4081(std::string const &name) {
 
 Component *Circuit::create4071(std::string const &name) {
     return new C4071(name);
+}
+
+Component *Circuit::create4011(std::string const &name) {
+    return new C4011(name);
 }
 
 Component *Circuit::createInput(std::string const &name) {
