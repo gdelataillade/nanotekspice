@@ -15,6 +15,7 @@
 #include "C4069.hpp"
 #include "C4071.hpp"
 #include "C4011.hpp"
+#include "C4030.hpp"
 #include "C4001.hpp"
 #include "C4081.hpp"
 #include "False.hpp"
@@ -53,6 +54,7 @@ class Circuit : public nts::IComponent {
     Component *create4071(std::string const &name);
     Component *create4011(std::string const &name);
     Component *create4001(std::string const &name);
+    Component *create4030(std::string const &name);
     Component *create4081(std::string const &name);
     Component *create4069(std::string const &name);
     Component *createTrue(std::string const &name);

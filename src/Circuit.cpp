@@ -14,7 +14,7 @@ Circuit::Circuit(std::map<std::string, nts::Tristate> inputs)
     this->chipsetConstructor["4011"]        = std::bind(&Circuit::create4011, this, std::placeholders::_1);
     this->chipsetConstructor["4013"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4017"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4030"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4030"]        = std::bind(&Circuit::create4030, this, std::placeholders::_1);
     this->chipsetConstructor["4040"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
     this->chipsetConstructor["4069"]        = std::bind(&Circuit::create4069, this, std::placeholders::_1);
     this->chipsetConstructor["4071"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -127,6 +127,10 @@ Component *Circuit::create4011(std::string const &name) {
 
 Component *Circuit::create4001(std::string const &name) {
     return new C4001(name);
+}
+
+Component *Circuit::create4030(std::string const &name) {
+    return new C4030(name);
 }
 
 Component *Circuit::createInput(std::string const &name) {
