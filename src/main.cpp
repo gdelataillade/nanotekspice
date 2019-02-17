@@ -12,6 +12,7 @@ TODO:
     Free memory (dump)
     Gestions erreurs mauvais inputs/fichier de config
     Creer autres chipsets (clock, nand, nor, ...)
+    TESTS UNITAIRES !!! (tester les portes logiques)
 */
 
 #include "IComponent.hpp"
@@ -90,7 +91,7 @@ int main(int argc, char const *argv[]) {
     c->runSimulation();
     c->displayOutputs();
     std::string cmd;
-    while (1) {
+    while (1) { // gerer le ctrl-C / ctrl-D ?
         std::cout << "> ";
         std::cin >> cmd; // read ?
         if (!executeCommand(cmd, &c, &inputs)) {
