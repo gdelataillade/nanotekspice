@@ -39,8 +39,13 @@ void setInputs(std::map<std::string, nts::Tristate> *inputs, int argc, char cons
     }
 }
 
-bool executeCommand(std::string cmd, Circuit **c)
+bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tristate> *inputs)
 {
+    std::string name;
+    int value;
+    int pos;
+    nts::Tristate state;
+
     if (cmd == "exit" || cmd == "quit") {
         return false;
     }
@@ -48,7 +53,21 @@ bool executeCommand(std::string cmd, Circuit **c)
         (*c)->runSimulation();
     }
     if (cmd == "display") {
-        std::cout << "displaying..." << std::endl;
+        (*c)->displayOutputs();
+    }
+    if (cmd.find('=') != std::string::npos) {
+        pos = std::string(cmd).find("=");
+        name = std::string(cmd).substr(0, pos);
+        value = atoi(std::string(cmd).substr(pos + 1).c_str());
+        if (value == 0) {
+            state = nts::FALSE;
+        } else if (value == 1) {
+            state = nts::TRUE;
+        } else {
+            state = nts::UNDEFINED;
+        }
+        inputs->clear();
+        inputs->insert(std::pair<std::string, nts::Tristate>(name, state)); // remplace la valeur de l'input
     }
     return true;
 }
@@ -61,15 +80,16 @@ int main(int argc, char const *argv[]) {
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, argc, argv);
     Circuit *c = new Circuit(inputs);
-    std::string path(argv[1]);
-    Parser p(path, c);
-    p.fillCircuit();
+    std::string path = std::string(argv[1]);
+    Parser *p = new Parser(path, c);
+    p->fillCircuit();
     c->runSimulation();
-    std::string input;
+    c->displayOutputs();
+    std::string cmd;
     while (1) {
         std::cout << "> ";
-        std::cin >> input; // read ?
-        if (!executeCommand(input, &c)) {
+        std::cin >> cmd; // read ?
+        if (!executeCommand(cmd, &c, &inputs)) {
             break;
         }
     }

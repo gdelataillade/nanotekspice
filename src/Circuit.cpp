@@ -9,46 +9,26 @@
 
 Circuit::Circuit(std::map<std::string, nts::Tristate> inputs)
     : nts::IComponent(), _inputs(inputs) {
-    this->chipsetConstructor["4001"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4008"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4011"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4013"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4017"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4030"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4040"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4069"] =
-        std::bind(&Circuit::create4069, this, std::placeholders::_1);
-    this->chipsetConstructor["4071"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4081"] =
-        std::bind(&Circuit::create4081, this, std::placeholders::_1);
-    this->chipsetConstructor["4094"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4514"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["4801"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["2716"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["input"] =
-        std::bind(&Circuit::createInput, this, std::placeholders::_1);
-    this->chipsetConstructor["output"] =
-        std::bind(&Circuit::createOutput, this, std::placeholders::_1);
-    this->chipsetConstructor["true"] =
-        std::bind(&Circuit::createTrue, this, std::placeholders::_1);
-    this->chipsetConstructor["false"] =
-        std::bind(&Circuit::createFalse, this, std::placeholders::_1);
-    this->chipsetConstructor["clock"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
-    this->chipsetConstructor["terminal"] =
-        std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4001"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4008"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4011"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4013"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4017"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4030"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4040"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4069"]        = std::bind(&Circuit::create4069, this, std::placeholders::_1);
+    this->chipsetConstructor["4071"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4081"]        = std::bind(&Circuit::create4081, this, std::placeholders::_1);
+    this->chipsetConstructor["4094"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4514"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["4801"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["2716"]        = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["input"]       = std::bind(&Circuit::createInput, this, std::placeholders::_1);
+    this->chipsetConstructor["output"]      = std::bind(&Circuit::createOutput, this, std::placeholders::_1);
+    this->chipsetConstructor["true"]        = std::bind(&Circuit::createTrue, this, std::placeholders::_1);
+    this->chipsetConstructor["false"]       = std::bind(&Circuit::createFalse, this, std::placeholders::_1);
+    this->chipsetConstructor["clock"]       = std::bind(&Circuit::create4071, this, std::placeholders::_1);
+    this->chipsetConstructor["terminal"]    = std::bind(&Circuit::create4071, this, std::placeholders::_1);
 }
 
 void Circuit::addComponent(std::string name, std::string type) {
@@ -115,8 +95,19 @@ void Circuit::runSimulation() {
 
     for (it = 0; it < this->_nbCmpts; ++it) {
         if (this->_circuit[it]->getType() == "output") {
+            this->_circuit[it]->compute(1);
+        }
+    }
+}
+
+void Circuit::displayOutputs() const
+{
+    std::size_t it;
+
+    for (it = 0; it < this->_nbCmpts; ++it) {
+        if (this->_circuit[it]->getType() == "output") {
             std::cout << this->_circuit[it]->getName() << "="
-                      << this->_circuit[it]->compute(1) << std::endl;
+                      << this->_circuit[it]->getOutput(1) << std::endl;
         }
     }
 }
