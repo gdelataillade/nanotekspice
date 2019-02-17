@@ -7,16 +7,13 @@
 
 #include "Output.hpp"
 
-Output::Output(std::string const &name) : Component(name, "output")
-{
-}
+Output::Output(std::string const &name) : Component(name, "output") {}
 
-Output::~Output()
-{
-}
+Output::~Output() {}
 
 nts::Tristate Output::compute(std::size_t pin)
 {
-    this->_outputs.insert(std::pair<std::size_t, nts::Tristate>(1, this->_cmpt[0]->compute(this->_otherPin[0])));
+    this->_outputs.insert(std::pair<std::size_t, nts::Tristate>
+        (1, this->_cmpt[0]->compute(this->_otherPin[0])));
     return this->getOutput(1);
 }

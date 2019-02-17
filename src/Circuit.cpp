@@ -56,7 +56,6 @@ void Circuit::addComponent(std::string name, std::string type) {
 
 void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
                       std::size_t pin_2) {
-    // find matching components with names and assign pins
     // std::cout << "Link " << cmpt1 << ":" << pin_1 << " to " << cmpt2 << ":"
     // << pin_2 << std::endl;
     auto buf1 = std::find_if(
@@ -90,7 +89,6 @@ void Circuit::removeComponent() {
 
 void Circuit::runSimulation() {
     // std::cout << "====RUN SIMULATION====" << std::endl;
-    // for loop to execute all outputs :
     std::size_t it;
 
     for (it = 0; it < this->_nbCmpts; ++it) {

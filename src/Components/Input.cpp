@@ -7,13 +7,9 @@
 
 #include "Input.hpp"
 
-Input::Input(std::string const &name) : Component(name, "input")
-{
-}
+Input::Input(std::string const &name) : Component(name, "input") {}
 
-Input::~Input()
-{
-}
+Input::~Input() {}
 
 nts::Tristate Input::compute(std::size_t pin)
 {

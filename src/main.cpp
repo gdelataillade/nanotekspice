@@ -8,6 +8,9 @@
 /*
 TODO:
     Les exeptions
+    Changer valeurs input dans le terminal
+    Free memory (dump)
+    Gestions erreurs mauvais inputs/fichier de config
 */
 
 #include "IComponent.hpp"

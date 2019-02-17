@@ -10,18 +10,7 @@
 Component::Component(std::string name, std::string type)
 : nts::IComponent(), _name(name), _type(type)  {}
 
-nts::Tristate Component::compute(std::size_t pin)
-{
-    // std::map<std::size_t, std::size_t>::iterator itr;
-    // int tmp; // only for debug
-
-    // for (itr = _links.begin(); itr != _links.end(); itr++) {
-    //     tmp = std::distance( _links.begin(), itr);
-    //     std::cout << itr->first << " ~ " << itr->second << " with " << _cmpt[tmp]->getName() << std::endl;
-    // }
-    // Trouver les inputs (outputs du component precedent) et compute
-    return nts::UNDEFINED;
-}
+nts::Tristate Component::compute(std::size_t pin) { return nts::UNDEFINED; }
 
 void Component::setLink(std::size_t pin, IComponent &other,
                         std::size_t otherPin) {
