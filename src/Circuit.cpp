@@ -103,9 +103,20 @@ void Circuit::displayOutputs() const
 
     for (it = 0; it < this->_nbCmpts; ++it) {
         if (this->_circuit[it]->getType() == "output") {
-            std::cout << this->_circuit[it]->getName() << "="
-                      << this->_circuit[it]->getOutput(1) << std::endl;
+            std::cout << this->_circuit[it]->getName() << "=";
+                if (this->_circuit[it]->getOutput(1) == nts::UNDEFINED) {
+                    std::cout << "U" << std::endl;
+                }
         }
+    }
+}
+
+void Circuit::dump() const
+{
+    std::size_t it;
+
+    for (it = 0; it < this->_nbCmpts; ++it) {
+        delete this->_circuit[it];
     }
 }
 

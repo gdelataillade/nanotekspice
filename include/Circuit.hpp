@@ -37,7 +37,7 @@ class Circuit : public nts::IComponent {
     };
     void setLink(std::size_t pin, nts::IComponent &other,
                  std::size_t otherPin) override{};
-    void dump() const override { return; };
+    void dump() const override;
     void displayOutputs() const;
 
    private:

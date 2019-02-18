@@ -9,10 +9,12 @@
 TODO:
     Les exeptions
     Changer valeurs input dans le terminal
-    Free memory (dump)
+    Free memory (dump) / smart pointers ?
+    Gerer boucles infinies
     Gestions erreurs mauvais inputs/fichier de config
     Creer autres chipsets (clock, nand, nor, ...)
     TESTS UNITAIRES !!! (tester les portes logiques)
+    Enlever dossier exemples du repo
 */
 
 #include "IComponent.hpp"
@@ -98,5 +100,8 @@ int main(int argc, char const *argv[]) {
             break;
         }
     }
+    c->dump();
+    delete c;
+    delete p;
     return 0;
 }
