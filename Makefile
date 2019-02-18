@@ -20,6 +20,7 @@ SRC		=	$(SRC_CLASS)	\
 			./src/Components/C4030.cpp	\
 			./src/Components/C4001.cpp	\
 			./src/Components/C4069.cpp	\
+			./src/Components/Clock.cpp	\
 			./src/Components/True.cpp		\
 			./src/Components/False.cpp
 

@@ -22,9 +22,11 @@
 #include "Input.hpp"
 #include "Output.hpp"
 #include "True.hpp"
+#include "Clock.hpp"
 
-class Circuit : public nts::IComponent {
-   public:
+class Circuit : public nts::IComponent
+{
+  public:
     Circuit(std::map<std::string, nts::Tristate> inputs);
     virtual ~Circuit(){};
     void addComponent(std::string name, std::string type);
@@ -32,7 +34,8 @@ class Circuit : public nts::IComponent {
                  std::size_t pin_2);
     void removeComponent();
     void runSimulation();
-    nts::Tristate compute(std::size_t pin = 1) override {
+    nts::Tristate compute(std::size_t pin = 1) override
+    {
         return nts::UNDEFINED;
     };
     void setLink(std::size_t pin, nts::IComponent &other,
@@ -40,11 +43,11 @@ class Circuit : public nts::IComponent {
     void dump() const override;
     void displayOutputs() const;
 
-   private:
+  private:
     std::vector<Component *> _circuit;
     std::size_t _nbCmpts = 0;
     std::map<std::string, nts::Tristate>
-        _inputs;  // inputs values defined in prompt
+        _inputs; // inputs values defined in prompt
 
     std::map<std::string, std::function<Component *(const std::string &)>>
         chipsetConstructor;
@@ -59,6 +62,7 @@ class Circuit : public nts::IComponent {
     Component *create4069(std::string const &name);
     Component *createTrue(std::string const &name);
     Component *createFalse(std::string const &name);
+    Component *createClock(std::string const &name);
 };
 
 #endif /* !CIRCUIT_HPP_ */
