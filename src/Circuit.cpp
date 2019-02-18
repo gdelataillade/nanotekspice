@@ -7,8 +7,8 @@
 
 #include "Circuit.hpp"
 
-Circuit::Circuit(std::map<std::string, nts::Tristate> inputs)
-    : nts::IComponent(), _inputs(inputs)
+Circuit::Circuit(std::map<std::string, nts::Tristate> inputs, int count)
+    : nts::IComponent(), _inputs(inputs), _count(count)
 {
     this->chipsetConstructor["4001"] = std::bind(&Circuit::create4001, this, std::placeholders::_1);
     this->chipsetConstructor["4008"] = std::bind(&Circuit::create4071, this, std::placeholders::_1);
@@ -102,8 +102,7 @@ void Circuit::runSimulation()
 
     for (it = 0; it < this->_nbCmpts; ++it)
     {
-        if (this->_circuit[it]->getType() == "output")
-        {
+        if (this->_circuit[it]->getType() == "output") {
             this->_circuit[it]->compute(1);
         }
     }
@@ -186,5 +185,5 @@ Component *Circuit::createFalse(std::string const &name)
 
 Component *Circuit::createClock(std::string const &name)
 {
-    return new Clock(name);
+    return new Clock(name, _count);
 }

@@ -12,12 +12,13 @@
 
 class Clock : public Component {
    public:
-    Clock(std::string const &name);
+    Clock(std::string const &name, int count);
     ~Clock();
     nts::Tristate compute(std::size_t pin = 1) final;
 
    protected:
    private:
+      int _count;
 };
 
 #endif /* !CLOCK_HPP_ */

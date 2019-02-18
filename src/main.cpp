@@ -8,11 +8,10 @@
 /*
 TODO:
     Les exeptions
-    Changer valeurs input dans le terminal
+    Clock
     Free memory (dump) / smart pointers ?
     Gerer boucles infinies
-    Gestions erreurs mauvais inputs/fichier de config
-    Creer autres chipsets (clock, nand, nor, ...)
+    Gerer SIGINT ?
     TESTS UNITAIRES !!! (tester les portes logiques)
     Enlever dossier exemples du repo
 */
@@ -46,17 +45,22 @@ void setInputs(std::map<std::string, nts::Tristate> *inputs, int argc, char cons
     }
 }
 
-bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tristate> *inputs)
+bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tristate> *inputs, Parser **p, std::string path)
 {
     std::string name;
     int value;
     int pos;
     nts::Tristate state;
+    static int count = 1;
 
     if (cmd == "exit" || cmd == "quit") {
         return false;
     }
     if (cmd == "simulate") {
+        count++;
+        (*c) = new Circuit(*inputs, count);
+        (*p) = new Parser(path, *c);
+        (*p)->fillCircuit();
         (*c)->runSimulation();
     }
     if (cmd == "display") {
@@ -79,14 +83,15 @@ bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tri
     return true;
 }
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
     if (argc < 2) {
         std::cerr << "Don't forget the filepath!" << std::endl;
-        return 0;  // TROW EXCEPTION !
+        return 0;  // THROW EXCEPTION !
     }
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, argc, argv);
-    Circuit *c = new Circuit(inputs);
+    Circuit *c = new Circuit(inputs, 1);
     std::string path = std::string(argv[1]);
     Parser *p = new Parser(path, c);
     p->fillCircuit();
@@ -96,7 +101,7 @@ int main(int argc, char const *argv[]) {
     while (1) { // gerer le ctrl-C / ctrl-D ?
         std::cout << "> ";
         std::cin >> cmd; // read ?
-        if (!executeCommand(cmd, &c, &inputs)) {
+        if (!executeCommand(cmd, &c, &inputs, &p, path)) {
             break;
         }
     }

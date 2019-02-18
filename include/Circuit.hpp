@@ -27,7 +27,7 @@
 class Circuit : public nts::IComponent
 {
   public:
-    Circuit(std::map<std::string, nts::Tristate> inputs);
+    Circuit(std::map<std::string, nts::Tristate> inputs, int count);
     virtual ~Circuit(){};
     void addComponent(std::string name, std::string type);
     void addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
@@ -63,6 +63,7 @@ class Circuit : public nts::IComponent
     Component *createTrue(std::string const &name);
     Component *createFalse(std::string const &name);
     Component *createClock(std::string const &name);
+    int _count;
 };
 
 #endif /* !CIRCUIT_HPP_ */
