@@ -67,8 +67,7 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
         this->_circuit.begin(), this->_circuit.end(),
         [cmpt1](Component *obj) { return obj->getName() == cmpt1; });
     int pos1 = std::distance(this->_circuit.begin(), buf1);
-    if (buf1 == this->_circuit.end())
-    {
+    if (buf1 == this->_circuit.end()) {
         std::cerr
             << "Error: couldn't find the component to link in the container"
             << std::endl; // EXCEPTION
