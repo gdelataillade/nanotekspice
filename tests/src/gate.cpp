@@ -6,6 +6,7 @@
 */
 
 #include <criterion/criterion.h>
+#include <criterion/redirect.h>
 #include "Circuit.hpp"
 #include "Parser.hpp"
 
@@ -35,7 +36,12 @@ void setInputs(std::map<std::string, nts::Tristate> *inputs, int argc,
     }
 }
 
-Test(C4071, test_component_4071) {
+void redirect_all_stdout(void) {
+    cr_redirect_stdout();
+    cr_redirect_stderr();
+}
+
+Test(C4071, test_component_4071_S1, .init = redirect_all_stdout) {
     char const *command[] = {"./nano", "../exemples/or.nts", "a=1", "b=1"};
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, 4, command);
@@ -45,4 +51,18 @@ Test(C4071, test_component_4071) {
     p->fillCircuit();
     c->runSimulation();
     c->displayOutputs();
+    cr_assert_stdout_eq_str("s=1\n");
+}
+
+Test(C4071, test_component_4071_S0, .init = redirect_all_stdout) {
+    char const *command[] = {"./nano", "../exemples/or.nts", "a=0", "b=0"};
+    std::map<std::string, nts::Tristate> inputs;
+    setInputs(&inputs, 4, command);
+    Circuit *c = new Circuit(inputs, 1);
+    std::string path = std::string(command[1]);
+    Parser *p = new Parser(path, c);
+    p->fillCircuit();
+    c->runSimulation();
+    c->displayOutputs();
+    cr_assert_stdout_eq_str("s=0\n");
 }
