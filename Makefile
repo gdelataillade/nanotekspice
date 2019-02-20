@@ -52,5 +52,8 @@ fclean		:	clean
                         @echo "FCLEAN: OK"
 
 re		:	fclean all
+tests_run :
+				make -C ./tests
+				./tests/unit_tests
 
 .PHONY		:	all clean fclean re
