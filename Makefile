@@ -53,5 +53,6 @@ fclean		:	clean
 re		:	fclean all
 tests_run :
 				make -C ./tests
+				./tests/unit_tests
 
 .PHONY		:	all clean fclean re
