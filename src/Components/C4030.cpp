@@ -7,12 +7,11 @@
 
 #include "C4030.hpp"
 
-C4030::C4030(std::string const &name) : Component(name, "4071") {}
+C4030::C4030(std::string const &name) : Component(name, "4030") {}
 
 C4030::~C4030() {}
 
-nts::Tristate C4030::compute(std::size_t pin)
-{
+nts::Tristate C4030::compute(std::size_t pin) {
     // std::cout << "Compute at " << this->getName() << std::endl;
     std::size_t otherPin;
     std::size_t it;
