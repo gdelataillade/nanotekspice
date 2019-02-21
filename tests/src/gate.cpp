@@ -42,7 +42,7 @@ void redirect_all_stdout(void) {
 }
 
 Test(C4071, test_component_4071_S1, .init = redirect_all_stdout) {
-    char const *command[] = {"./nano", "../exemples/or.nts", "a=1", "b=1"};
+    char const *command[] = {"./nano", "./exemples/or.nts", "a=1", "b=1"};
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, 4, command);
     Circuit *c = new Circuit(inputs, 1);
@@ -55,7 +55,7 @@ Test(C4071, test_component_4071_S1, .init = redirect_all_stdout) {
 }
 
 Test(C4071, test_component_4071_S0, .init = redirect_all_stdout) {
-    char const *command[] = {"./nano", "../exemples/or.nts", "a=0", "b=0"};
+    char const *command[] = {"./nano", "./exemples/or.nts", "a=0", "b=0"};
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, 4, command);
     Circuit *c = new Circuit(inputs, 1);
@@ -68,7 +68,7 @@ Test(C4071, test_component_4071_S0, .init = redirect_all_stdout) {
 }
 
 Test(C4001, test_component_4001_S0, .init = redirect_all_stdout) {
-    char const *command[] = {"./nano", "../exemples/nor.nts", "a=0", "b=0"};
+    char const *command[] = {"./nano", "./exemples/nor.nts", "a=0", "b=0"};
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, 4, command);
     Circuit *c = new Circuit(inputs, 1);

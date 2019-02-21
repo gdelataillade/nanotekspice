@@ -47,12 +47,15 @@ clean		:
 			@echo "CLEAN: OK"
 
 fclean		:	clean
+			make -C ./tests fclean
 			@rm -f $(NAME)
-                        @echo "FCLEAN: OK"
+      @echo "FCLEAN: OK"
 
 re		:	fclean all
-tests_run :
-				make -C ./tests
-				./tests/unit_tests
+
+tests_run : fclean
+				@rm -fr **/*.gcda **/*.gcno
+				@make -C ./tests
+				@./tests/unit_tests
 
 .PHONY		:	all clean fclean re
