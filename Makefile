@@ -11,6 +11,7 @@ SRC		=	$(SRC_CLASS)	\
 			./src/main.cpp \
             ./src/Parser.cpp \
             ./src/Circuit.cpp \
+			./src/Exception.cpp \
             ./src/Component.cpp	\
 			./src/Components/C4071.cpp	 \
 			./src/Components/Input.cpp	\

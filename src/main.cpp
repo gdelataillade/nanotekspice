@@ -8,14 +8,14 @@
 /*
 TODO:
     Les exeptions
-    Clock
+    Undefined values/results
     Free memory (dump) / smart pointers ?
     Gerer boucles infinies
     Gerer SIGINT ?
-    TESTS UNITAIRES !!! (tester les portes logiques)
     Enlever dossier exemples du repo
 */
 
+#include "Exception.hpp"
 #include "IComponent.hpp"
 #include "Parser.hpp"
 
@@ -87,7 +87,7 @@ int main(int argc, char const *argv[])
 {
     if (argc < 2) {
         std::cerr << "Don't forget the filepath!" << std::endl;
-        return 0;  // THROW EXCEPTION !
+        return 0;
     }
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, argc, argv);
