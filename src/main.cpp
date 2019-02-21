@@ -11,8 +11,8 @@ TODO:
     Undefined values/results
     Free memory (dump) / smart pointers ?
     Gerer boucles infinies
-    Gerer SIGINT ?
-    Enlever dossier exemples du repo
+    Gerer ctrl-d ?
+    Ajouter tests unitaires
 */
 
 #include "Exception.hpp"
@@ -53,7 +53,7 @@ bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tri
     nts::Tristate state;
     static int count = 1;
 
-    if (cmd == "exit" || cmd == "quit") {
+    if (cmd == "exit") {
         return false;
     }
     if (cmd == "simulate") {
