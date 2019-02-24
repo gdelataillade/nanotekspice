@@ -38,7 +38,7 @@ void Circuit::addComponent(std::string name, std::string type)
     // std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
 
     if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
-        return;
+        exit(84);
 
     Component *c = this->chipsetConstructor[type](name);
     std::map<std::string, nts::Tristate>::iterator it;
@@ -67,7 +67,8 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
         this->_circuit.begin(), this->_circuit.end(),
         [cmpt1](Component *obj) { return obj->getName() == cmpt1; });
     int pos1 = std::distance(this->_circuit.begin(), buf1);
-    if (buf1 == this->_circuit.end()) {
+    if (buf1 == this->_circuit.end())
+    {
         std::cerr
             << "Error: couldn't find the component to link in the container"
             << std::endl; // EXCEPTION
@@ -101,7 +102,8 @@ void Circuit::runSimulation()
 
     for (it = 0; it < this->_nbCmpts; ++it)
     {
-        if (this->_circuit[it]->getType() == "output") {
+        if (this->_circuit[it]->getType() == "output")
+        {
             this->_circuit[it]->compute(1);
         }
     }
@@ -111,14 +113,19 @@ void Circuit::displayOutputs() const
 {
     std::size_t it;
 
-    for (it = 0; it < this->_nbCmpts; ++it) {
-        if (this->_circuit[it]->getType() == "output") {
+    for (it = 0; it < this->_nbCmpts; ++it)
+    {
+        if (this->_circuit[it]->getType() == "output")
+        {
             std::cout << this->_circuit[it]->getName() << "=";
-                if (this->_circuit[it]->getOutput(1) == nts::UNDEFINED) {
-                    std::cout << "U" << std::endl;
-                } else {
-                    std::cout << this->_circuit[it]->getOutput(1) << std::endl;
-                }
+            if (this->_circuit[it]->getOutput(1) == nts::UNDEFINED)
+            {
+                std::cout << "U" << std::endl;
+            }
+            else
+            {
+                std::cout << this->_circuit[it]->getOutput(1) << std::endl;
+            }
         }
     }
 }
@@ -127,7 +134,8 @@ void Circuit::dump() const
 {
     std::size_t it;
 
-    for (it = 0; it < this->_nbCmpts; ++it) {
+    for (it = 0; it < this->_nbCmpts; ++it)
+    {
         delete this->_circuit[it];
     }
 }
