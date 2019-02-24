@@ -93,10 +93,8 @@ void Circuit::runSimulation()
 {
     std::size_t it;
 
-    for (it = 0; it < this->_nbCmpts; ++it)
-    {
-        if (this->_circuit[it]->getType() == "output")
-        {
+    for (it = 0; it < this->_nbCmpts; ++it) {
+        if (this->_circuit[it]->getType() == "output") {
             this->_circuit[it]->compute(1);
         }
     }
@@ -106,17 +104,13 @@ void Circuit::displayOutputs() const
 {
     std::size_t it;
 
-    for (it = 0; it < this->_nbCmpts; ++it)
-    {
-        if (this->_circuit[it]->getType() == "output")
-        {
+    for (it = 0; it < this->_nbCmpts; ++it) {
+        if (this->_circuit[it]->getType() == "output") {
             std::cout << this->_circuit[it]->getName() << "=";
-            if (this->_circuit[it]->getOutput(1) == nts::UNDEFINED)
-            {
+            if (this->_circuit[it]->getOutput(1) == nts::UNDEFINED) {
                 std::cout << "U" << std::endl;
             }
-            else
-            {
+            else {
                 std::cout << this->_circuit[it]->getOutput(1) << std::endl;
             }
         }
@@ -127,8 +121,7 @@ void Circuit::dump() const
 {
     std::size_t it;
 
-    for (it = 0; it < this->_nbCmpts; ++it)
-    {
+    for (it = 0; it < this->_nbCmpts; ++it) {
         delete this->_circuit[it];
     }
 }

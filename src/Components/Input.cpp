@@ -13,6 +13,14 @@ Input::~Input() {}
 
 nts::Tristate Input::compute(std::size_t pin)
 {
-    // std::cout << "Compute at " << this->getName() << std::endl;
+    try {
+        if (this->_outputs.empty()) {
+            throw Error("Input do not have init value");
+        }
+    }
+    catch(Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
+    }
     return this->getOutput(1);
 }
