@@ -20,10 +20,15 @@ void Parser::fillCircuit()
     std::string arr2[3];
     int pos;
 
-    file.open(this->_path);
-    if (!file) {
-        std::cerr << "Error: Couldn't open the file" << std::endl; // EXCEPTION
-        return;
+    try {
+        file.open(this->_path);
+        if (!file) {
+            throw Error("Error: Couldn't open the file");
+        }
+    }
+    catch (Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
     }
     while (!file.eof()) {
         getline(file, buf);

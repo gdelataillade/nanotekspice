@@ -14,6 +14,7 @@
 #include <map>
 #include <utility>
 #include <algorithm>
+#include "Exception.hpp"
 
 namespace nts {
     enum Tristate {

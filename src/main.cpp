@@ -15,7 +15,6 @@ TODO:
     Ajouter tests unitaires
 */
 
-#include "Exception.hpp"
 #include "IComponent.hpp"
 #include "Parser.hpp"
 

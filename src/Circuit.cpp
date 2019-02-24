@@ -34,23 +34,20 @@ Circuit::Circuit(std::map<std::string, nts::Tristate> inputs, int count)
 
 void Circuit::addComponent(std::string name, std::string type)
 {
-    // create new component and add it to the vector container
-    // std::cout << "Type: [" << type << "], name: [" << name << "]" << std::endl;
-
-    if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
-        exit(84);
+    try {
+        if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
+            throw Error("Config file: a component do not exists");
+    }
+    catch (Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
+    }
 
     Component *c = this->chipsetConstructor[type](name);
     std::map<std::string, nts::Tristate>::iterator it;
 
-    if (c == nullptr)
-        return; // EXCEPTION
-    for (it = _inputs.begin(); it != _inputs.end(); it++)
-    {
-        if (name == it->first)
-        {
-            // std::cout << "Set state for " << name << " to " <<
-            // _inputs[pos].second << std::endl;
+    for (it = _inputs.begin(); it != _inputs.end(); it++) {
+        if (name == it->first) {
             c->setOutputs(it->second);
         }
     }
@@ -61,43 +58,39 @@ void Circuit::addComponent(std::string name, std::string type)
 void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
                       std::size_t pin_2)
 {
-    // std::cout << "Link " << cmpt1 << ":" << pin_1 << " to " << cmpt2 << ":"
-    // << pin_2 << std::endl;
     auto buf1 = std::find_if(
         this->_circuit.begin(), this->_circuit.end(),
         [cmpt1](Component *obj) { return obj->getName() == cmpt1; });
     int pos1 = std::distance(this->_circuit.begin(), buf1);
-    if (buf1 == this->_circuit.end())
-    {
-        std::cerr
-            << "Error: couldn't find the component to link in the container"
-            << std::endl; // EXCEPTION
-        return;
+    try {
+        if (buf1 == this->_circuit.end()) {
+            throw Error("Error: couldn't find the component to link in the container");
+        }
+    }
+    catch (Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
     }
     auto buf2 = std::find_if(
         this->_circuit.begin(), this->_circuit.end(),
         [cmpt2](const Component *obj) { return obj->getName() == cmpt2; });
     int pos2 = std::distance(this->_circuit.begin(), buf2);
-    if (buf2 == this->_circuit.end())
-    {
-        std::cerr
-            << "Error: couldn't find the component to link in the container"
-            << std::endl; // EXCEPTION
-        return;
+    try {
+        if (buf2 == this->_circuit.end()) {
+            throw("Error: couldn't find the component to link in the container");
+        }  
+    }
+    catch(Error &e) {
+        std::cerr << e.what() << std::endl;
     }
     this->_circuit[pos1]->setLink(pin_1, *this->_circuit[pos2], pin_2);
     this->_circuit[pos2]->setLink(pin_2, *this->_circuit[pos1], pin_1);
 }
 
-void Circuit::removeComponent()
-{
-    // delete component in parameter
-    // and remove it from vector container
-}
+void Circuit::removeComponent() {}
 
 void Circuit::runSimulation()
 {
-    // std::cout << "====RUN SIMULATION====" << std::endl;
     std::size_t it;
 
     for (it = 0; it < this->_nbCmpts; ++it)
