@@ -38,6 +38,8 @@ class Component : public nts::IComponent {
     nts::Tristate gateNand(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateXor(nts::Tristate &int1, nts::Tristate &int2);
     nts::Tristate gateXnor(nts::Tristate &int1, nts::Tristate &int2);
+
+    size_t nbCompute = 0;
 };
 
 #endif /* !COMPONENT_HPP_ */

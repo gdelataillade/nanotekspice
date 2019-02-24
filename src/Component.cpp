@@ -43,6 +43,11 @@ std::string Component::getType() const
 
 nts::Tristate Component::getOutput(std::size_t pin)
 {
+    std::map<std::size_t, nts::Tristate>::iterator it = this->_outputs.find(pin);
+
+    if (it == this->_outputs.end()) {
+        return nts::UNDEFINED;
+    }
     return this->_outputs.find(pin)->second;
 }
 
@@ -50,6 +55,15 @@ std::size_t Component::findIndex(std::size_t value)
 {
     std::vector<std::size_t>::iterator it = std::find(this->_pin.begin(), this->_pin.end(), value);
 
+    try {
+        if (it == this->_pin.end()) {
+            throw Error("Error: pin not connected");
+        }
+    }
+    catch(Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
     return std::distance(this->_pin.begin(), it);
 }
 

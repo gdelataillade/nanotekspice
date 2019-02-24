@@ -14,13 +14,14 @@ Input::~Input() {}
 nts::Tristate Input::compute(std::size_t pin)
 {
     try {
-        if (this->_outputs.empty()) {
-            throw Error("Input do not have init value");
+        this->nbCompute++;
+        if (this->nbCompute > 5) {
+            throw Error("Infinite loop detected. Abort.");
         }
     }
-    catch(Error &e) {
+    catch (Error &e) {
         std::cerr << e.what() << std::endl;
-        exit(1);
+        exit(84);
     }
     return this->getOutput(1);
 }

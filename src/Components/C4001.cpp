@@ -55,6 +55,16 @@ nts::Tristate C4001::compute(std::size_t pin)
 
     res = this->gateNot(res);
     this->_outputs.insert(std::pair<std::size_t, nts::Tristate>(pin, res));
+    try {
+        this->nbCompute++;
+        if (this->nbCompute > 15) {
+            throw Error("Infinite loop detected. Abort.");
+        }
+    }
+    catch (Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
     // // std::cout << "C4001: " << res << std::endl;
     return res;
 }

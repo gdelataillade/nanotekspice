@@ -28,7 +28,7 @@ void Parser::fillCircuit()
     }
     catch (Error &e) {
         std::cerr << e.what() << std::endl;
-        exit(1);
+        exit(84);
     }
     while (!file.eof()) {
         getline(file, buf);
@@ -64,7 +64,7 @@ void Parser::fillCircuit()
     }
     catch(Error &e) {
         std::cerr << e.what() << std::endl;
-        exit(1);
+        exit(84);
     }
     file.close();
 }

@@ -5,12 +5,6 @@
 ** main
 */
 
-/*
-TODO:
-    Undefined values/results
-    Free memory (dump) / smart pointers ?
-*/
-
 #include "IComponent.hpp"
 #include "Parser.hpp"
 
@@ -85,16 +79,22 @@ int main(int argc, char const *argv[])
     }
     catch (Error &e) {
         std::cerr << e.what() << std::endl;
-        exit(1);
+        return 84;
     }
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, argc, argv);
     Circuit *c = new Circuit(inputs, 1);
     std::string path = std::string(argv[1]);
     Parser *p = new Parser(path, c);
-    p->fillCircuit();
-    c->runSimulation();
-    c->displayOutputs();
+    try {
+        p->fillCircuit();
+        c->runSimulation();
+        c->displayOutputs();
+    }
+    catch(Error &e) {
+        std::cerr << e.what() << std::endl;
+        return 84;
+    }
     std::string cmd;
     std::cout << "> ";
     while (std::getline(std::cin, cmd)) {

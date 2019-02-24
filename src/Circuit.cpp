@@ -36,11 +36,11 @@ void Circuit::addComponent(std::string name, std::string type)
 {
     try {
         if (this->chipsetConstructor.find(type) == this->chipsetConstructor.end())
-            throw Error("Config file: a component do not exists");
+            throw Error("Error in config file: a component do not exists");
     }
     catch (Error &e) {
         std::cerr << e.what() << std::endl;
-        exit(1);
+        exit(84);
     }
 
     Component *c = this->chipsetConstructor[type](name);
@@ -69,7 +69,7 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
     }
     catch (Error &e) {
         std::cerr << e.what() << std::endl;
-        exit(1);
+        exit(84);
     }
     auto buf2 = std::find_if(
         this->_circuit.begin(), this->_circuit.end(),
@@ -77,11 +77,12 @@ void Circuit::addLink(std::string cmpt1, std::size_t pin_1, std::string cmpt2,
     int pos2 = std::distance(this->_circuit.begin(), buf2);
     try {
         if (buf2 == this->_circuit.end()) {
-            throw("Error: couldn't find the component to link in the container");
+            throw Error("Error: couldn't find the component to link in the container");
         }  
     }
     catch(Error &e) {
         std::cerr << e.what() << std::endl;
+        exit(84);
     }
     this->_circuit[pos1]->setLink(pin_1, *this->_circuit[pos2], pin_2);
     this->_circuit[pos2]->setLink(pin_2, *this->_circuit[pos1], pin_1);

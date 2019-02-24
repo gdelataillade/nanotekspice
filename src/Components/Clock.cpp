@@ -23,5 +23,15 @@ nts::Tristate Clock::compute(std::size_t pin)
         this->_outputs.clear();
         this->setOutputs(this->gateNot(tmp));
     }
+    try {
+        this->nbCompute++;
+        if (this->nbCompute > 15) {
+            throw Error("Infinite loop detected. Abort.");
+        }
+    }
+    catch (Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(84);
+    }
     return this->getOutput(1);
 }

@@ -6,8 +6,8 @@
 ##
 
 SRC_CLASS	=	../src/Parser.cpp \
-      ../src/Circuit.cpp \
-      ../src/Component.cpp	\
+				../src/Circuit.cpp \
+				../src/Component.cpp	\
 			../src/Components/C4071.cpp	 \
 			../src/Components/Input.cpp	\
 			../src/Components/Output.cpp	\
@@ -18,6 +18,7 @@ SRC_CLASS	=	../src/Parser.cpp \
 			../src/Components/C4069.cpp	\
 			../src/Components/Clock.cpp	\
 			../src/Components/True.cpp		\
+			../src/Exception.cpp \
 			../src/Components/False.cpp
 
 SRC		=	$(SRC_CLASS)	\
