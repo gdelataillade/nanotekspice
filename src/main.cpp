@@ -85,9 +85,13 @@ bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tri
 
 int main(int argc, char const *argv[])
 {
-    if (argc < 2) {
-        std::cerr << "Don't forget the filepath!" << std::endl;
-        return 0;
+    try {
+        if (argc < 2)
+            throw Error("Don't forget the filepath!");
+    }
+    catch (Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
     }
     std::map<std::string, nts::Tristate> inputs;
     setInputs(&inputs, argc, argv);
