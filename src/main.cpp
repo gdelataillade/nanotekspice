@@ -7,12 +7,8 @@
 
 /*
 TODO:
-    Les exeptions
     Undefined values/results
     Free memory (dump) / smart pointers ?
-    Gerer boucles infinies
-    Gerer ctrl-d ?
-    Ajouter tests unitaires
 */
 
 #include "IComponent.hpp"
@@ -27,11 +23,9 @@ void setInputs(std::map<std::string, nts::Tristate> *inputs, int argc, char cons
     nts::Tristate state;
 
     while (it < argc) {
-        // std::cout << argv[it] << ": ";
         pos = std::string(argv[it]).find("=");
         name = std::string(argv[it]).substr(0, pos);
         value = atoi(std::string(argv[it]).substr(pos + 1).c_str());
-        // std::cout << name << " ~ " << value << std::endl;
         if (value == 0) {
             state = nts::FALSE;
         } else if (value == 1) {
@@ -64,6 +58,7 @@ bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tri
     }
     if (cmd == "display") {
         (*c)->displayOutputs();
+        std::cout << "> ";
     }
     if (cmd.find('=') != std::string::npos) {
         pos = std::string(cmd).find("=");
@@ -77,7 +72,7 @@ bool executeCommand(std::string cmd, Circuit **c, std::map<std::string, nts::Tri
             state = nts::UNDEFINED;
         }
         inputs->clear();
-        inputs->insert(std::pair<std::string, nts::Tristate>(name, state)); // remplace la valeur de l'input
+        inputs->insert(std::pair<std::string, nts::Tristate>(name, state));
     }
     return true;
 }
@@ -101,9 +96,9 @@ int main(int argc, char const *argv[])
     c->runSimulation();
     c->displayOutputs();
     std::string cmd;
-    while (1) { // gerer le ctrl-C / ctrl-D ?
+    std::cout << "> ";
+    while (std::getline(std::cin, cmd)) {
         std::cout << "> ";
-        std::cin >> cmd; // read ?
         if (!executeCommand(cmd, &c, &inputs, &p, path)) {
             break;
         }

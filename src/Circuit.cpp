@@ -122,7 +122,7 @@ void Circuit::dump() const
     std::size_t it;
 
     for (it = 0; it < this->_nbCmpts; ++it) {
-        delete this->_circuit[it];
+        this->_circuit[it]->dump();
     }
 }
 

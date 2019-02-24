@@ -57,5 +57,14 @@ void Parser::fillCircuit()
             }
         }
     }
+    try {
+        if (level != 2) {
+            throw Error("Error with sections in the configuration file");
+        }
+    }
+    catch(Error &e) {
+        std::cerr << e.what() << std::endl;
+        exit(1);
+    }
     file.close();
 }

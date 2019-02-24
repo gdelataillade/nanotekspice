@@ -28,8 +28,7 @@ void Component::setOutputs(nts::Tristate state)
 
 void Component::dump() const
 {
-    // delete component
-    return;
+    this->~Component();
 }
 
 std::string Component::getName() const
@@ -51,7 +50,6 @@ std::size_t Component::findIndex(std::size_t value)
 {
     std::vector<std::size_t>::iterator it = std::find(this->_pin.begin(), this->_pin.end(), value);
 
-    // TODO: error check value not found: if it == _pin.end()
     return std::distance(this->_pin.begin(), it);
 }
 
